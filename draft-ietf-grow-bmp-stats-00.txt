@@ -4,9 +4,9 @@
 
 GROW                                                     M.S. Srivastava
 Internet-Draft                                          Juniper Networks
-Updates: 7854 (if approved)                            20 September 2023
+Updates: 7854 (if approved)                            21 September 2023
 Intended status: Standards Track                                        
-Expires: 23 March 2024
+Expires: 24 March 2024
 
 
                  Definition For New BMP Statistics Type
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 March 2024.
+   This Internet-Draft will expire on 24 March 2024.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Srivastava                Expires 23 March 2024                 [Page 1]
+Srivastava                Expires 24 March 2024                 [Page 1]
 
 Internet-Draft             BMP New Statistics             September 2023
 
@@ -69,7 +69,7 @@ Table of Contents
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
    5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
    6.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -100,75 +100,81 @@ Table of Contents
 
 2.1.  RIB-IN Statistics Definition
 
-
-
-
-
-
-
-
-
-
-Srivastava                Expires 23 March 2024                 [Page 2]
-
-Internet-Draft             BMP New Statistics             September 2023
-
-
-   *  Type = TBD1: (64-bit Gauge) Current number of routes n per-AFI/
+   *  Type = TBD1: (64-bit Gauge) Current number of routes in per-AFI/
       SAFI rejected by inbound policy.  The value can increase or
       decrease base on ongoing configuration change.  Note that this
       counter is different from stats type 0 defined in [RFC7854].  The
       stats type 0 in [RFC7854] is the a 32 counter which is
       monotonically increasing number and doesn't represents the current
+
+
+
+Srivastava                Expires 24 March 2024                 [Page 2]
+
+Internet-Draft             BMP New Statistics             September 2023
+
+
       number of routes rejected by inbound policy due to ongoing
-      configuration changes.
+      configuration changes.  The value is structured as: 2-byte Address
+      Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.
 
    *  Type = TBD2: (64-bit Gauge) Number of routes in per-AFI/SAFI
       accepted by inbound policy.  The value can increase or decrease
-      base on ongoing configuration change or network events.
+      base on ongoing configuration change or network events.  The value
+      is structured as: 2-byte Address Family Identifier (AFI), 1-byte
+      Subsequent Address Family Identifier (SAFI), followed by a 64-bit
+      Gauge.  Some implementations, or configurations in
+      implementations, may discard routes that do not match policy and
+      thus the accepted count and the rib-in counts will be identical in
+      such cases.
 
-   *  Type = TBD3: (64-bit Gauge) Number of routes n per-AFI/SAFI
+   *  Type = TBD3: (64-bit Gauge) Number of routes in per-AFI/SAFI
       selected as active route.  The value can increase or decrease base
       on ongoing configuration change or network events.  The value is
       structured as: 2-byte Address Family Identifier (AFI), 1-byte
       Subsequent Address Family Identifier (SAFI), followed by a 64-bit
       Gauge.
 
-   *  Type = TBD4: (64-bit Gauge) Number of routes n per-AFI/SAFI damped
-      by configured route damping policy.  The value can increase or
-      decrease base on configuration change or network events.  The
+   *  Type = TBD4: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      damped by configured route damping policy.  The value can increase
+      or decrease base on configuration change or network events.  The
       value is structured as: 2-byte Address Family Identifier (AFI),
       1-byte Subsequent Address Family Identifier (SAFI), followed by a
       64-bit Gauge.
 
-   *  Type = TBD5: (64-bit Gauge) Number of routes n per-AFI/SAFI marked
-      as stale by any configuration.  The value is structured as: 2-byte
-      Address Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
+   *  Type = TBD5: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      marked as stale by any configuration.  The value is structured as:
+      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
+      Family Identifier (SAFI), followed by a 64-bit Gauge.  This is the
+      route that are marked stale as part of GR [RFC4784] process.
 
-   *  Type = TBD6: (64-bit Gauge) Number of routes n per-AFI/SAFI marked
-      as stale by LLGR.  The value is structured as: 2-byte Address
-      Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
+   *  Type = TBD6: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      marked as stale by LLGR.  The value is structured as: 2-byte
+      Address Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.  This is the route
+      that are marked stale as part of LLGR process.
 
 2.2.  RIB-OUT Statistics Definition
 
-   *  Type = TBD7: (64-bit Gauge) Current number of routes n per-AFI/
+   *  Type = TBD7: (64-bit Gauge) Current number of routes in per-AFI/
       SAFI rejected by outbound policy.  These routes are active routes
       which should otherwise would have been advertised in absense of
       outbound policy which rejected them.  The value can increase or
       decrease base on ongoing configuration change.  The value is
-      structured as: 2-byte Address Family Identifier (AFI), 1-byte
-      Subsequent Address Family Identifier (SAFI), followed by a 64-bit
-      Gauge.
 
 
 
-
-Srivastava                Expires 23 March 2024                 [Page 3]
+Srivastava                Expires 24 March 2024                 [Page 3]
 
 Internet-Draft             BMP New Statistics             September 2023
 
+
+      structured as: 2-byte Address Family Identifier (AFI), 1-byte
+      Subsequent Address Family Identifier (SAFI), followed by a 64-bit
+      Gauge.  This counter only considers routes distributed from loc-
+      rib into the adj-ribs-out and does not include cases like BGP add-
+      paths [RFC7911].
 
 3.  IANA Considerations
 
@@ -193,14 +199,32 @@ Internet-Draft             BMP New Statistics             September 2023
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC4784]  Carroll, C. and F. Quick, "Verizon Wireless Dynamic Mobile
+              IP Key Update for cdma2000(R) Networks", RFC 4784,
+              DOI 10.17487/RFC4784, June 2007,
+              <https://www.rfc-editor.org/info/rfc4784>.
+
    [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
               Monitoring Protocol (BMP)", RFC 7854,
               DOI 10.17487/RFC7854, June 2016,
               <https://www.rfc-editor.org/info/rfc7854>.
 
+   [RFC7911]  Walton, D., Retana, A., Chen, E., and J. Scudder,
+              "Advertisement of Multiple Paths in BGP", RFC 7911,
+              DOI 10.17487/RFC7911, July 2016,
+              <https://www.rfc-editor.org/info/rfc7911>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+
+
+
+Srivastava                Expires 24 March 2024                 [Page 4]
+
+Internet-Draft             BMP New Statistics             September 2023
+
 
    [RFC8671]  Evens, T., Bayraktar, S., Lucente, P., Mi, P., and S.
               Zhuang, "Support for Adj-RIB-Out in the BGP Monitoring
@@ -213,18 +237,6 @@ Internet-Draft             BMP New Statistics             September 2023
               <https://www.rfc-editor.org/info/rfc9069>.
 
 Author's Address
-
-
-
-
-
-
-
-
-Srivastava                Expires 23 March 2024                 [Page 4]
-
-Internet-Draft             BMP New Statistics             September 2023
-
 
    Mukul Srivastava
    Juniper Networks
@@ -265,16 +277,4 @@ Internet-Draft             BMP New Statistics             September 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Srivastava                Expires 23 March 2024                 [Page 5]
+Srivastava                Expires 24 March 2024                 [Page 5]
