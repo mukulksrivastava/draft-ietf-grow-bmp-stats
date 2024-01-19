@@ -10,7 +10,7 @@ Expires: 22 July 2024
 
 
                  Definition For New BMP Statistics Type
-                  draft-msri-grow-bmp-bgp-rib-stats-00
+                  draft-ietf-grow-bmp-bgp-rib-stats-00
 
 Abstract
 
