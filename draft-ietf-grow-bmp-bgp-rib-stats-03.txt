@@ -20,7 +20,8 @@ Abstract
 
    RFC 7854 defined different BMP statistics messages types to observe
    interesting events that occur on the router.  This document updates
-   RFC 7854 by adding new statistics type.
+   RFC 7854 by adding new statistics type to monitor BMP rib-in and rib-
+   out Ribs.
 
 Status of This Memo
 
@@ -44,12 +45,11 @@ Copyright Notice
    Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
-
-
-
-
-
-
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
 
 
 
@@ -58,11 +58,6 @@ Srivastava, et al.       Expires 9 November 2024                [Page 1]
 Internet-Draft             BMP New Statistics                   May 2024
 
 
-   This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents (https://trustee.ietf.org/
-   license-info) in effect on the date of publication of this document.
-   Please review these documents carefully, as they describe your rights
-   and restrictions with respect to this document.  Code Components
    extracted from this document must include Revised BSD License text as
    described in Section 4.e of the Trust Legal Provisions and are
    provided without warranty as described in the Revised BSD License.
@@ -78,7 +73,7 @@ Table of Contents
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
    5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
    6.  Normative References  . . . . . . . . . . . . . . . . . . . .   8
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -106,6 +101,11 @@ Table of Contents
 
    This section defines different statistics type for RIB-IN and RIB-OUT
    monitoring type.
+
+
+
+
+
 
 
 
@@ -239,41 +239,41 @@ Internet-Draft             BMP New Statistics                   May 2024
       Identifier (AFI), 1-byte Subsequent Address Family Identifier
       (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD14: (64-bit Gauge) Current Number of routes rejected by
-      reaching the license-customized route threshold.  This value is
-      affected by whether a customized license exists for the relevant
-      address family, and when the customized license is installed.
-      This value can increase or decrease based on current customized
-      information of license.
+   *  Type = TBD14: (64-bit Gauge) Number of routes left until reaching
+      the license-customized route threshold.  This value is affected by
+      whether a customized license exists for the relevant address
+      family, and when the customized license is installed.  This value
+      can increase or decrease based on current customized information
+      of license.
 
       Since the license-customized route threshold is vendor specific,
       this type value (TBD14) SHOULD use enterprise-specific TLV
-      encoding as follows [I-D.ietf-grow-bmp-tlv-ebit]:
-
-       0                   1                   2                   3
-       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |E|       Stat Type             |          Stat Len             |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                        Enterprise number                      |
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      |                        Stat Data                              |
-      ~                                                               ~
-      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                                  Figure 1
+      encoding as described in Section 3.3 of
+      [I-D.ietf-grow-bmp-tlv-ebit].
 
       For the enterprise-specific TLV of TBD14, E-bit SHOULD set to 1,
       and TBD14 is 15 bits of TLV Type.  As enterprise-specific Type
       value, TBD14 is determined by the Enterprise number, and does not
       have to be defined by INNA.
 
+   *  Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+      until reaching the license-customized route threshold.  This value
+      is affected by whether a customized license exists for the
+      relevant address family, and when the customized license is
+      installed.  This value can increase or decrease based on current
+      customized information of license.  The value is structured as:
+      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
+      Family Identifier (SAFI), followed by a 64-bit Gauge.
 
+      It's also since the license-customized route threshold is vendor
+      specific, this type value (TBD15) SHOULD also use enterprise-
+      specific TLV encoding as described in Section 3.3 of
+      [I-D.ietf-grow-bmp-tlv-ebit].
 
-
-
-
-
-
+      For the enterprise-specific TLV of TBD15, E-bit SHOULD set to 1,
+      and TBD15 is 15 bits of TLV Type.  As enterprise-specific Type
+      value, TBD15 is determined by the Enterprise number, and also does
+      not have to be defined by INNA.
 
 
 
@@ -281,24 +281,6 @@ Srivastava, et al.       Expires 9 November 2024                [Page 5]
 
 Internet-Draft             BMP New Statistics                   May 2024
 
-
-   *  Type = TBD15: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI rejected by reaching the license-customized route threshold.
-      This value is affected by whether a customized license exists for
-      the relevant address family, and when the customized license is
-      installed.  This value can increase or decrease based on current
-      customized information of license.  The value is structured as:
-      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
-      Family Identifier (SAFI), followed by a 64-bit Gauge.
-
-      It's also since the license-customized route threshold is vendor
-      specific, this type value (TBD15) SHOULD use enterprise-specific
-      TLV encoding as shown in Figure 1.
-
-      For the enterprise-specific TLV of TBD15, E-bit SHOULD set to 1,
-      and TBD15 is 15 bits of TLV Type.  As enterprise-specific Type
-      value, TBD15 is determined by the Enterprise number, and also does
-      not have to be defined by INNA.
 
    *  Type = TBD16: (64-bit Gauge) Current Number of routes rejected by
       exceeding the length threshold of as-path.  This value can
@@ -323,21 +305,6 @@ Internet-Draft             BMP New Statistics                   May 2024
       Family Identifier (AFI), 1-byte Subsequent Address Family
       Identifier (SAFI), followed by a 64-bit Gauge.
 
-
-
-
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 9 November 2024                [Page 6]
-
-Internet-Draft             BMP New Statistics                   May 2024
-
-
    *  Type = TBD19: (64-bit Gauge) Current Number of routes in per-AFI/
       SAFI Adj-RIBs-In-Post-Policy validated by verifying route origin
       Autonomous System (AS) number through the Route Origin
@@ -355,6 +322,21 @@ Internet-Draft             BMP New Statistics                   May 2024
       ROA changes of RPKI.  The value is structured as: 2-byte Address
       Family Identifier (AFI), 1-byte Subsequent Address Family
       Identifier (SAFI), followed by a 64-bit Gauge.
+
+
+
+
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 9 November 2024                [Page 6]
+
+Internet-Draft             BMP New Statistics                   May 2024
+
 
 2.2.  RIB-OUT Statistics Definition
 
@@ -386,14 +368,6 @@ Internet-Draft             BMP New Statistics                   May 2024
    *  Type = TBD24: (64-bit Gauge) Current Number of routes in per-AFI/
       SAFI Adj-RIBs-Out-Post-Policy invalidated by verifying route
       origin Autonomous System (AS) number through the Route Origin
-
-
-
-Srivastava, et al.       Expires 9 November 2024                [Page 7]
-
-Internet-Draft             BMP New Statistics                   May 2024
-
-
       Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
       [RFC6811].  This value can increase or decrease base on ongoing
       ROA changes of RPKI.  The value is structured as: 2-byte Address
@@ -412,6 +386,14 @@ Internet-Draft             BMP New Statistics                   May 2024
    *  Type = TBD26: (64-bit Gauge) Current Number of routes in per-AFI/
       SAFI Adj-RIBs-Out-Post-Policy not found by verifying route origin
       Autonomous System (AS) number through the Route Origin
+
+
+
+Srivastava, et al.       Expires 9 November 2024                [Page 7]
+
+Internet-Draft             BMP New Statistics                   May 2024
+
+
       Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
       [RFC6811].  This value can increase or decrease base on ongoing
       ROA changes of RPKI.  The value is structured as: 2-byte Address
@@ -437,19 +419,6 @@ Internet-Draft             BMP New Statistics                   May 2024
 
 6.  Normative References
 
-
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 9 November 2024                [Page 8]
-
-Internet-Draft             BMP New Statistics                   May 2024
-
-
    [I-D.ietf-grow-bmp-tlv-ebit]
               Lucente, P. and Y. Gu, "Support for Enterprise-specific
               TLVs in the BGP Monitoring Protocol", Work in Progress,
@@ -470,6 +439,16 @@ Internet-Draft             BMP New Statistics                   May 2024
               draft-lapukhov-bgp-ecmp-considerations-12, 28 December
               2023, <https://datatracker.ietf.org/doc/html/draft-
               lapukhov-bgp-ecmp-considerations-12>.
+
+
+
+
+
+
+Srivastava, et al.       Expires 9 November 2024                [Page 8]
+
+Internet-Draft             BMP New Statistics                   May 2024
+
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -495,17 +474,6 @@ Internet-Draft             BMP New Statistics                   May 2024
               DOI 10.17487/RFC6811, January 2013,
               <https://www.rfc-editor.org/info/rfc6811>.
 
-
-
-
-
-
-
-Srivastava, et al.       Expires 9 November 2024                [Page 9]
-
-Internet-Draft             BMP New Statistics                   May 2024
-
-
    [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
               Monitoring Protocol (BMP)", RFC 7854,
               DOI 10.17487/RFC7854, June 2016,
@@ -526,6 +494,17 @@ Internet-Draft             BMP New Statistics                   May 2024
               <https://www.rfc-editor.org/info/rfc9494>.
 
 Authors' Addresses
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 9 November 2024                [Page 9]
+
+Internet-Draft             BMP New Statistics                   May 2024
+
 
    Mukul Srivastava
    Juniper Networks
@@ -553,15 +532,6 @@ Authors' Addresses
    Email: linchangwang.04414@h3c.com
 
 
-
-
-
-
-Srivastava, et al.       Expires 9 November 2024               [Page 10]
-
-Internet-Draft             BMP New Statistics                   May 2024
-
-
    Jinming Li
    China Mobile
    32 Xuanwumen West Street
@@ -587,30 +557,4 @@ Internet-Draft             BMP New Statistics                   May 2024
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 9 November 2024               [Page 11]
+Srivastava, et al.       Expires 9 November 2024               [Page 10]
