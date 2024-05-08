@@ -158,7 +158,7 @@ ipr="trust200902" updates="7854" consensus="true">
 <abstract>
 <t>
 	RFC 7854 defined different BMP statistics messages types to observe interesting events that occur on the router.
-	This document updates RFC 7854 by adding new statistics type.
+	This document updates RFC 7854 by adding new statistics type to monitor BMP rib-in and rib-out Ribs.
 </t>
 
 </abstract>
@@ -295,30 +295,13 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD14: (64-bit Gauge) Current Number of routes rejected by reaching the license-customized route threshold. 
+		Type = TBD14: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
     This value is affected by whether a customized license exists for the relevant address family, and when the customized license is installed. 
     This value can increase or decrease based on current customized information of license.
 
 	  <t>
 		Since the license-customized route threshold is vendor specific, 
-    this type value (TBD14) SHOULD use enterprise-specific TLV encoding as follows <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>:
-	  </t>
-
-	  <t>
-    <figure align="center">
-	  <artwork name="Enterprise Specific TLV"><![CDATA[
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|E|       Stat Type             |          Stat Len             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                        Enterprise number                      |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                        Stat Data                              |
-~                                                               ~
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                            Figure 1]]></artwork>
-	  </figure>
+    this type value (TBD14) SHOULD use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
 	  </t>
 
 	  <t>
@@ -328,13 +311,14 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD15: (64-bit Gauge) Current Number of routes in per-AFI/SAFI rejected by reaching the license-customized route threshold. 
+		Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
     This value is affected by whether a customized license exists for the relevant address family, and when the customized license is installed. 
     This value can increase or decrease based on current customized information of license. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 
 	  <t>
-    It's also since the license-customized route threshold is vendor specific, this type value (TBD15) SHOULD use enterprise-specific TLV encoding as shown in Figure 1.
+    It's also since the license-customized route threshold is vendor specific, 
+    this type value (TBD15) SHOULD also use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
 	  </t>
 
 	  <t>
