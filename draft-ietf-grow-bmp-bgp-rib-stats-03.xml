@@ -30,7 +30,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-ietf-grow-bmp-bgp-rib-stats-03"
+<rfc category="std" docName="draft-ietf-grow-bmp-bgp-rib-stats-04"
 ipr="trust200902" updates="7854" consensus="true">
   <!-- category values: std, bcp, info, exp, and historic
     ipr values: full3667, noModification3667, noDerivatives3667
@@ -418,14 +418,142 @@ ipr="trust200902" updates="7854" consensus="true">
 
 
 <section anchor="IANA" title="IANA Considerations">
-<t>
-	This document requests that IANA assign the following new parameters (Except TBD14 and TBD15) 
-	to the <eref
-				target="https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml">
-	BMP parameters name space</eref>.
-</t>
+      <t>
+          This document requests that IANA assign the following new parameters
+          to the <eref
+                    target="https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml">
+          BMP parameters name space</eref>.
+      </t>
 
+      <section title="BMP RIB-IN Statistics Types">
+          <t>
+              This document defines new BMP RIB-IN statistic types for statistics
+              reporting (<xref target="rib-in-stats"/>):
 
+              <list style="symbols">
+                  <t>
+                    Type = TBD1: (64-bit Gauge)
+                    Number of routes currently in Adj-RIBs-In Pre-Policy.
+                  </t>
+
+                  <t>
+                    Type = TBD2: (64-bit Gauge)
+                    Number of routes currently in per-AFI/SAFI Adj-RIBs-In Pre-Policy.
+                  </t>
+
+                  <t>
+                    Type = TBD3: (64-bit Gauge) Number of routes currently in Adj-RIBs-In Post-Policy. 
+                  </t>
+
+                  <t>
+                    Type = TBD4: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy. 
+                  </t>
+
+                  <t>
+                    Type = TBD5: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected by inbound policy.
+                  </t>
+
+                  <t>
+                    Type = TBD6: (64-bit Gauge) Number of routes currently in per-AFI/SAFI accepted by inbound policy.
+                  </t>
+
+                  <t>
+                    Type = TBD7: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as primary route.
+                  </t>
+
+                  <t>
+                    Type = TBD8: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as backup route.
+                  </t>
+
+                  <t>
+                    Type = TBD9: (64-bit Gauge) Number of routes in per-AFI/SAFI suppressed by configured route damping policy.
+                  </t>
+
+                  <t>
+                    Type = TBD10: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by any configuration.
+                  </t>
+
+                  <t>
+                    Type = TBD11: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by LLGR. 
+                  </t>
+
+                  <t>
+                    Type = TBD12: (64-bit Gauge) Number of routes left until reaching the received route threshold.
+                  </t>
+
+                  <t>
+                    Type = TBD13: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the received route threshold.
+                  </t>
+
+                  <t>
+                    Type = TBD14: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
+                  </t>
+
+                  <t>
+                    Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
+                  </t>
+
+                  <t>
+                    Type = TBD16: (64-bit Gauge) Number of routes currently rejected due to exceeding the length threshold of as-path. 
+                  </t>
+
+                  <t>
+                    Type = TBD17: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected due to exceeding the length threshold of as-path. 
+                  </t>
+
+                  <t>
+                    Type = TBD18: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated after verifying route origin AS number 
+                    through the ROA of RPKI. 
+                  </t>
+
+                  <t>
+                    Type = TBD19: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy validated after verifying route origin AS number 
+                    through the ROA of RPKI.
+                  </t>
+
+                  <t>
+                    Type = TBD20: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy not found after verifying route origin AS number 
+                    through the ROA of RPKI.  
+                  </t>
+              </list>
+          </t>
+      </section>
+
+      <section title="BMP RIB-OUT Statistics Types">
+          <t>
+              This document defines new BMP RIB-OUT statistic types for statistics
+              reporting (<xref target="rib-out-stats"/>):
+
+              <list style="symbols">
+                    <t>
+                      Type = TBD21: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI rejected by outbound policy. 
+                    </t>
+
+                    <t>
+                      Type = TBD22: (64-bit Gauge)  Number of routes currently refused by exceeding the length threshold of as-path.
+                    </t>
+
+                    <t>
+                      Type = TBD23: (64-bit Gauge) Number of routes currently in per-AFI/SAFI refused by exceeding the length threshold of as-path.
+                    </t>
+
+                    <t>
+                      Type = TBD24: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route origin AS number 
+                      through the ROA of RPKI. 
+                    </t>
+
+                    <t>
+                      Type = TBD25: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy validated after verifying route origin AS number 
+                      through the ROA of RPKI.
+                    </t>
+
+                    <t>
+                      Type = TBD26: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy not found after verifying route origin AS number 
+                      through the ROA of RPKI.  
+                    </t>
+              </list>
+          </t>
+      </section>
 </section>
 
 <section anchor="Security" title="Security Considerations">
