@@ -197,14 +197,14 @@ ipr="trust200902" updates="7854" consensus="true">
 <t>
 	<list style="symbols">
   <t>
-		Type = TBD1: (64-bit Gauge) Current number of routes in Adj-RIBs-In-Pre-Policy. 
+		Type = 18: (64-bit Gauge) Current number of routes in Adj-RIBs-In-Pre-Policy. 
 		The value can increase or decrease based upon ongoing configuration change.
 		
 		Note that this counter updates stats type 7 defined in <xref target="RFC7854"/> and makes it a explicit for Adj-RIBs-In-Pre-Policy. 
 	</t>
 
 	<t>
-		Type = TBD2: (64-bit Gauge) Current number of routes in per-AFI/SAFI Adj-RIBs-In-Pre-Policy. 
+		Type = 19: (64-bit Gauge) Current number of routes in per-AFI/SAFI Adj-RIBs-In-Pre-Policy. 
 		The value can increase or decrease based upon ongoing configuration change.
 		
 		Note that this counter is similar from stats type 9 defined in <xref target="RFC7854"/> and makes it a explicit for Adj-RIBs-In-Pre-Policy. 
@@ -212,18 +212,18 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD3: (64-bit Gauge) Current number of routes in Adj-RIBs-In-Post-Policy. 
+		Type = 20: (64-bit Gauge) Current number of routes in Adj-RIBs-In-Post-Policy. 
 		The value can increase or decrease based upon ongoing configuration change.
 	</t>
 
 	<t>
-		Type = TBD4: (64-bit Gauge) Current number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy. 
+		Type = 21: (64-bit Gauge) Current number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy. 
 		The value can increase or decrease based upon ongoing configuration change.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD5: (64-bit Gauge) Current number of routes in per-AFI/SAFI rejected by inbound policy. 
+		Type = 22: (64-bit Gauge) Current number of routes in per-AFI/SAFI rejected by inbound policy. 
 		The value can increase or decrease based upon ongoing configuration change.
 		
 		Note that this counter is different from stats type 0 defined in <xref target="RFC7854"/>. 
@@ -235,7 +235,7 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD6: (64-bit Gauge) Number of routes in per-AFI/SAFI accepted by inbound policy.
+		Type = 23: (64-bit Gauge) Number of routes in per-AFI/SAFI accepted by inbound policy.
 		The value can increase or decrease based upon ongoing configuration change or network events.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
     Some implementations, or configurations in implementations, may discard routes that do not match policy and 
@@ -244,7 +244,7 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD7: (64-bit Gauge) Number of routes in per-AFI/SAFI selected as primary route. 
+		Type = 24: (64-bit Gauge) Number of routes in per-AFI/SAFI selected as primary route. 
 		The value can increase or decrease based upon ongoing configuration change or network events.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
     
@@ -254,7 +254,7 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD8: (64-bit Gauge) Number of routes in per-AFI/SAFI selected as backup route. 
+		Type = 25: (64-bit Gauge) Number of routes in per-AFI/SAFI selected as backup route. 
 		The value can increase or decrease based upon ongoing configuration change or network events.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
     
@@ -262,7 +262,7 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD9: (64-bit Gauge) Number of routes in per-AFI/SAFI suppressed by configured route damping policy. 
+		Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI suppressed by configured route damping policy. 
 		The value can increase or decrease based upon configuration change or network events.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 
@@ -270,91 +270,91 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD10: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by any configuration.
+		Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by any configuration.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 
     Stale refers to a path which has been declared stale by the BGP Graceful Restart mechanism as described in Section 4.1 of <xref target="RFC4724"/>.
 	</t>
 
 	<t>
-		Type = TBD11: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by LLGR. 
+		Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by LLGR. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
     Stale refers to a path which has been declared stale by the BGP Long-Lived Graceful Restart mechanism as described in Section 4.3 of <xref target="RFC9494"/>.
     This is the route that are marked stale as part of LLGR process.
 	</t>
 
 	<t>
-		Type = TBD12: (64-bit Gauge) Number of routes left until reaching the received route threshold as defined in Section 6.7 of <xref target="RFC4271"/>. 
+		Type = 29: (64-bit Gauge) Number of routes left until reaching the received route threshold as defined in Section 6.7 of <xref target="RFC4271"/>. 
     This value can increase or decrease base on ongoing configuration changes of the peer's received route threshold.
 	</t>
 
 	<t>
-		Type = TBD13: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the received route threshold as defined in Section 6.7 of <xref target="RFC4271"/>. 
+		Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the received route threshold as defined in Section 6.7 of <xref target="RFC4271"/>. 
     This value can increase or decrease base on ongoing configuration changes of the peer's received route threshold. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD14: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
+		Type = 31: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
     This value is affected by whether a customized license exists for the relevant address family, and when the customized license is installed. 
     This value can increase or decrease based on current customized information of license.
 
 	  <t>
 		Since the license-customized route threshold is vendor specific, 
-    this type value (TBD14) SHOULD use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
+    this type value (31) SHOULD use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
 	  </t>
 
 	  <t>
-		For the enterprise-specific TLV of TBD14, E-bit SHOULD set to 1, and TBD14 is 15 bits of TLV Type. 
-    As enterprise-specific Type value, TBD14 is determined by the Enterprise number, and does not have to be defined by INNA.
+		For the enterprise-specific TLV of 31, E-bit SHOULD set to 1, and 31 is 15 bits of TLV Type. 
+    As enterprise-specific Type value, 31 is determined by the Enterprise number, and does not have to be defined by INNA.
 	  </t>
 	</t>
 
 	<t>
-		Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
+		Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
     This value is affected by whether a customized license exists for the relevant address family, and when the customized license is installed. 
     This value can increase or decrease based on current customized information of license. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 
 	  <t>
     It's also since the license-customized route threshold is vendor specific, 
-    this type value (TBD15) SHOULD also use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
+    this type value (32) SHOULD also use enterprise-specific TLV encoding as described in Section 3.3 of <xref target="I-D.ietf-grow-bmp-tlv-ebit"/>.
 	  </t>
 
 	  <t>
-		For the enterprise-specific TLV of TBD15, E-bit SHOULD set to 1, and TBD15 is 15 bits of TLV Type. 
-    As enterprise-specific Type value, TBD15 is determined by the Enterprise number, and also does not have to be defined by INNA.
+		For the enterprise-specific TLV of 32, E-bit SHOULD set to 1, and 32 is 15 bits of TLV Type. 
+    As enterprise-specific Type value, 32 is determined by the Enterprise number, and also does not have to be defined by INNA.
 	  </t>
 	</t>
 
 	<t>
-		Type = TBD16: (64-bit Gauge) Current Number of routes rejected by exceeding the length threshold of as-path. 
+		Type = 33: (64-bit Gauge) Current Number of routes rejected by exceeding the length threshold of as-path. 
     This value can increase or decrease base on ongoing configuration changes of the length threshold of as-path. 
     For as-path attribute information, please refer to <xref target="RFC4271"/>.
 	</t>
 
 	<t>
-		Type = TBD17: (64-bit Gauge) Current Number of routes in per-AFI/SAFI rejected by exceeding the length threshold of as-path. 
+		Type = 34: (64-bit Gauge) Current Number of routes in per-AFI/SAFI rejected by exceeding the length threshold of as-path. 
     This value can increase or decrease base on ongoing configuration changes of the length threshold of as-path. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD18: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy invalidated by verifying route origin Autonomous System (AS) number 
+		Type = 35: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy invalidated by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD19: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy validated by verifying route origin Autonomous System (AS) number 
+		Type = 36: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy validated by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD20: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy not found by verifying route origin Autonomous System (AS) number 
+		Type = 37: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In-Post-Policy not found by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
@@ -369,7 +369,7 @@ ipr="trust200902" updates="7854" consensus="true">
 	<list style="symbols">
 
 	<t>
-		Type = TBD21: (64-bit Gauge) Current number of routes in per-AFI/SAFI rejected by outbound policy. 
+		Type = 38: (64-bit Gauge) Current number of routes in per-AFI/SAFI rejected by outbound policy. 
     These routes are active routes which should otherwise would have been advertised in absense of outbound policy which rejected them.
     The value can increase or decrease based upon ongoing configuration change.
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
@@ -377,33 +377,33 @@ ipr="trust200902" updates="7854" consensus="true">
 	</t>
 
 	<t>
-		Type = TBD22: (64-bit Gauge) Current Number of routes refused to be sent by exceeding the length threshold of as-path. 
+		Type = 39: (64-bit Gauge) Current Number of routes refused to be sent by exceeding the length threshold of as-path. 
     This value can increase or decrease base on ongoing configuration changes of the length threshold of as-path. 
     For as-path attribute information, please refer to <xref target="RFC4271"/>.
 	</t>
 
 	<t>
-		Type = TBD23: (64-bit Gauge) Current Number of routes in per-AFI/SAFI refused to be sent by exceeding the length threshold of as-path. 
+		Type = 40: (64-bit Gauge) Current Number of routes in per-AFI/SAFI refused to be sent by exceeding the length threshold of as-path. 
     This value can increase or decrease base on ongoing configuration changes of the length threshold of as-path. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD24: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy invalidated by verifying route origin Autonomous System (AS) number 
+		Type = 41: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy invalidated by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD25: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy validated by verifying route origin Autonomous System (AS) number 
+		Type = 42: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy validated by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
 	</t>
 
 	<t>
-		Type = TBD26: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy not found by verifying route origin Autonomous System (AS) number 
+		Type = 43: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out-Post-Policy not found by verifying route origin Autonomous System (AS) number 
     through the Route Origin Authorization (ROA) of Resource Public Key Infrastructure (RPKI) <xref target="RFC6811"/>. 
     This value can increase or decrease base on ongoing ROA changes of RPKI. 
     The value is structured as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent Address Family Identifier (SAFI), followed by a 64-bit Gauge.
@@ -419,10 +419,10 @@ ipr="trust200902" updates="7854" consensus="true">
 
 <section anchor="IANA" title="IANA Considerations">
       <t>
-          This document requests that IANA assign the following new parameters
-          to the <eref
+          IANA has assigned the following new parameters in the BMP Statistics Types registry, 
+          part of the  <eref
                     target="https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml">
-          BMP parameters name space</eref>.
+          BMP parameters registry group</eref>.
       </t>
 
       <section title="BMP RIB-IN Statistics Types">
@@ -432,87 +432,87 @@ ipr="trust200902" updates="7854" consensus="true">
 
               <list style="symbols">
                   <t>
-                    Type = TBD1: (64-bit Gauge)
+                    Type = 18: (64-bit Gauge)
                     Number of routes currently in Adj-RIBs-In Pre-Policy.
                   </t>
 
                   <t>
-                    Type = TBD2: (64-bit Gauge)
+                    Type = 19: (64-bit Gauge)
                     Number of routes currently in per-AFI/SAFI Adj-RIBs-In Pre-Policy.
                   </t>
 
                   <t>
-                    Type = TBD3: (64-bit Gauge) Number of routes currently in Adj-RIBs-In Post-Policy. 
+                    Type = 20: (64-bit Gauge) Number of routes currently in Adj-RIBs-In Post-Policy. 
                   </t>
 
                   <t>
-                    Type = TBD4: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy. 
+                    Type = 21: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy. 
                   </t>
 
                   <t>
-                    Type = TBD5: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected by inbound policy.
+                    Type = 22: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected by inbound policy.
                   </t>
 
                   <t>
-                    Type = TBD6: (64-bit Gauge) Number of routes currently in per-AFI/SAFI accepted by inbound policy.
+                    Type = 23: (64-bit Gauge) Number of routes currently in per-AFI/SAFI accepted by inbound policy.
                   </t>
 
                   <t>
-                    Type = TBD7: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as primary route.
+                    Type = 24: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as primary route.
                   </t>
 
                   <t>
-                    Type = TBD8: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as backup route.
+                    Type = 25: (64-bit Gauge) Number of routes currently in per-AFI/SAFI selected as backup route.
                   </t>
 
                   <t>
-                    Type = TBD9: (64-bit Gauge) Number of routes in per-AFI/SAFI suppressed by configured route damping policy.
+                    Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI suppressed by configured route damping policy.
                   </t>
 
                   <t>
-                    Type = TBD10: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by any configuration.
+                    Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by any configuration.
                   </t>
 
                   <t>
-                    Type = TBD11: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by LLGR. 
+                    Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked as stale by LLGR. 
                   </t>
 
                   <t>
-                    Type = TBD12: (64-bit Gauge) Number of routes left until reaching the received route threshold.
+                    Type = 29: (64-bit Gauge) Number of routes left until reaching the received route threshold.
                   </t>
 
                   <t>
-                    Type = TBD13: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the received route threshold.
+                    Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the received route threshold.
                   </t>
 
                   <t>
-                    Type = TBD14: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
+                    Type = 31: (64-bit Gauge) Number of routes left until reaching the license-customized route threshold. 
                   </t>
 
                   <t>
-                    Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
+                    Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left until reaching the license-customized route threshold. 
                   </t>
 
                   <t>
-                    Type = TBD16: (64-bit Gauge) Number of routes currently rejected due to exceeding the length threshold of as-path. 
+                    Type = 33: (64-bit Gauge) Number of routes currently rejected due to exceeding the length threshold of as-path. 
                   </t>
 
                   <t>
-                    Type = TBD17: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected due to exceeding the length threshold of as-path. 
+                    Type = 34: (64-bit Gauge) Number of routes currently in per-AFI/SAFI rejected due to exceeding the length threshold of as-path. 
                   </t>
 
                   <t>
-                    Type = TBD18: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated after verifying route origin AS number 
+                    Type = 35: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated after verifying route origin AS number 
                     through the ROA of RPKI. 
                   </t>
 
                   <t>
-                    Type = TBD19: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy validated after verifying route origin AS number 
+                    Type = 36: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy validated after verifying route origin AS number 
                     through the ROA of RPKI.
                   </t>
 
                   <t>
-                    Type = TBD20: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy not found after verifying route origin AS number 
+                    Type = 37: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-In Post-Policy not found after verifying route origin AS number 
                     through the ROA of RPKI.  
                   </t>
               </list>
@@ -526,29 +526,29 @@ ipr="trust200902" updates="7854" consensus="true">
 
               <list style="symbols">
                     <t>
-                      Type = TBD21: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI rejected by outbound policy. 
+                      Type = 38: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI rejected by outbound policy. 
                     </t>
 
                     <t>
-                      Type = TBD22: (64-bit Gauge)  Number of routes currently refused by exceeding the length threshold of as-path.
+                      Type = 39: (64-bit Gauge)  Number of routes currently refused by exceeding the length threshold of as-path.
                     </t>
 
                     <t>
-                      Type = TBD23: (64-bit Gauge) Number of routes currently in per-AFI/SAFI refused by exceeding the length threshold of as-path.
+                      Type = 40: (64-bit Gauge) Number of routes currently in per-AFI/SAFI refused by exceeding the length threshold of as-path.
                     </t>
 
                     <t>
-                      Type = TBD24: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route origin AS number 
+                      Type = 41: (64-bit Gauge)  Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route origin AS number 
                       through the ROA of RPKI. 
                     </t>
 
                     <t>
-                      Type = TBD25: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy validated after verifying route origin AS number 
+                      Type = 42: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy validated after verifying route origin AS number 
                       through the ROA of RPKI.
                     </t>
 
                     <t>
-                      Type = TBD26: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy not found after verifying route origin AS number 
+                      Type = 43: (64-bit Gauge) Number of routes currently in per-AFI/SAFI Adj-RIBs-Out Post-Policy not found after verifying route origin AS number 
                       through the ROA of RPKI.  
                     </t>
               </list>

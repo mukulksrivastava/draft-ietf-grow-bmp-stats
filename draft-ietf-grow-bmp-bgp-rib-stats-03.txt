@@ -6,11 +6,11 @@ GROW                                                       M. Srivastava
 Internet-Draft                                          Juniper Networks
 Updates: 7854 (if approved)                                       Y. Liu
 Intended status: Standards Track                            China Mobile
-Expires: 20 April 2025                                            C. Lin
+Expires: 24 April 2025                                            C. Lin
                                                     New H3C Technologies
                                                                    J. Li
                                                             China Mobile
-                                                         17 October 2024
+                                                         21 October 2024
 
 
                  Definition For New BMP Statistics Type
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Srivastava, et al.        Expires 20 April 2025                 [Page 1]
+Srivastava, et al.        Expires 24 April 2025                 [Page 1]
 
 Internet-Draft             BMP New Statistics               October 2024
 
@@ -68,7 +68,7 @@ Table of Contents
      1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   2
    2.  Statistics Definition . . . . . . . . . . . . . . . . . . . .   2
      2.1.  RIB-IN Statistics Definition  . . . . . . . . . . . . . .   3
-     2.2.  RIB-OUT Statistics Definition . . . . . . . . . . . . . .   7
+     2.2.  RIB-OUT Statistics Definition . . . . . . . . . . . . . .   6
    3.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
      3.1.  BMP RIB-IN Statistics Types . . . . . . . . . . . . . . .   8
      3.2.  BMP RIB-OUT Statistics Types  . . . . . . . . . . . . . .   9
@@ -109,49 +109,49 @@ Table of Contents
 
 
 
-Srivastava, et al.        Expires 20 April 2025                 [Page 2]
+Srivastava, et al.        Expires 24 April 2025                 [Page 2]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
 2.1.  RIB-IN Statistics Definition
 
-   *  Type = TBD1: (64-bit Gauge) Current number of routes in Adj-RIBs-
-      In-Pre-Policy.  The value can increase or decrease based upon
-      ongoing configuration change.  Note that this counter updates
-      stats type 7 defined in [RFC7854] and makes it a explicit for Adj-
-      RIBs-In-Pre-Policy.
+   *  Type = 18: (64-bit Gauge) Current number of routes in Adj-RIBs-In-
+      Pre-Policy.  The value can increase or decrease based upon ongoing
+      configuration change.  Note that this counter updates stats type 7
+      defined in [RFC7854] and makes it a explicit for Adj-RIBs-In-Pre-
+      Policy.
 
-   *  Type = TBD2: (64-bit Gauge) Current number of routes in per-AFI/
-      SAFI Adj-RIBs-In-Pre-Policy.  The value can increase or decrease
-      based upon ongoing configuration change.  Note that this counter
-      is similar from stats type 9 defined in [RFC7854] and makes it a
+   *  Type = 19: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      Adj-RIBs-In-Pre-Policy.  The value can increase or decrease based
+      upon ongoing configuration change.  Note that this counter is
+      similar from stats type 9 defined in [RFC7854] and makes it a
       explicit for Adj-RIBs-In-Pre-Policy.  The value is structured as:
       2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
       Family Identifier (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD3: (64-bit Gauge) Current number of routes in Adj-RIBs-
-      In-Post-Policy.  The value can increase or decrease based upon
+   *  Type = 20: (64-bit Gauge) Current number of routes in Adj-RIBs-In-
+      Post-Policy.  The value can increase or decrease based upon
       ongoing configuration change.
 
-   *  Type = TBD4: (64-bit Gauge) Current number of routes in per-AFI/
-      SAFI Adj-RIBs-In-Post-Policy.  The value can increase or decrease
-      based upon ongoing configuration change.  The value is structured
-      as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent
-      Address Family Identifier (SAFI), followed by a 64-bit Gauge.
+   *  Type = 21: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      Adj-RIBs-In-Post-Policy.  The value can increase or decrease based
+      upon ongoing configuration change.  The value is structured as:
+      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
+      Family Identifier (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD5: (64-bit Gauge) Current number of routes in per-AFI/
-      SAFI rejected by inbound policy.  The value can increase or
-      decrease based upon ongoing configuration change.  Note that this
-      counter is different from stats type 0 defined in [RFC7854].  The
-      stats type 0 in [RFC7854] is the a 32 counter which is
-      monotonically increasing number and doesn't represents the current
-      number of routes rejected by inbound policy due to ongoing
-      configuration changes.  The value is structured as: 2-byte Address
-      Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
+   *  Type = 22: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      rejected by inbound policy.  The value can increase or decrease
+      based upon ongoing configuration change.  Note that this counter
+      is different from stats type 0 defined in [RFC7854].  The stats
+      type 0 in [RFC7854] is the a 32 counter which is monotonically
+      increasing number and doesn't represents the current number of
+      routes rejected by inbound policy due to ongoing configuration
+      changes.  The value is structured as: 2-byte Address Family
+      Identifier (AFI), 1-byte Subsequent Address Family Identifier
+      (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD6: (64-bit Gauge) Number of routes in per-AFI/SAFI
+   *  Type = 23: (64-bit Gauge) Number of routes in per-AFI/SAFI
       accepted by inbound policy.  The value can increase or decrease
       based upon ongoing configuration change or network events.  The
       value is structured as: 2-byte Address Family Identifier (AFI),
@@ -165,24 +165,25 @@ Internet-Draft             BMP New Statistics               October 2024
 
 
 
-Srivastava, et al.        Expires 20 April 2025                 [Page 3]
+Srivastava, et al.        Expires 24 April 2025                 [Page 3]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
-   *  Type = TBD7: (64-bit Gauge) Number of routes in per-AFI/SAFI
+   *  Type = 24: (64-bit Gauge) Number of routes in per-AFI/SAFI
       selected as primary route.  The value can increase or decrease
       based upon ongoing configuration change or network events.  The
       value is structured as: 2-byte Address Family Identifier (AFI),
       1-byte Subsequent Address Family Identifier (SAFI), followed by a
       64-bit Gauge.  A primary path is a recursive or non-recursive path
-      whose nexthop resolution ends with an adjacency draft-ietf-rtgwg-
-      bgp-pic [I-D.ietf-rtgwg-bgp-pic].  A prefix can have more than one
-      primary path if multipath is configured draft-lapukhov-bgp-ecmp-
-      considerations [I-D.lapukhov-bgp-ecmp-considerations].  A best-
-      path is also considered as a primary path.
+      whose nexthop resolution ends with an adjacency
+      draft-ietf-rtgwg-bgp-pic [I-D.ietf-rtgwg-bgp-pic].  A prefix can
+      have more than one primary path if multipath is configured
+      draft-lapukhov-bgp-ecmp-considerations
+      [I-D.lapukhov-bgp-ecmp-considerations].  A best-path is also
+      considered as a primary path.
 
-   *  Type = TBD8: (64-bit Gauge) Number of routes in per-AFI/SAFI
+   *  Type = 25: (64-bit Gauge) Number of routes in per-AFI/SAFI
       selected as backup route.  The value can increase or decrease
       based upon ongoing configuration change or network events.  The
       value is structured as: 2-byte Address Family Identifier (AFI),
@@ -192,7 +193,7 @@ Internet-Draft             BMP New Statistics               October 2024
       Backup paths are used for fast convergence in the event of
       failures.
 
-   *  Type = TBD9: (64-bit Gauge) Number of routes in per-AFI/SAFI
+   *  Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI
       suppressed by configured route damping policy.  The value can
       increase or decrease based upon configuration change or network
       events.  The value is structured as: 2-byte Address Family
@@ -201,16 +202,16 @@ Internet-Draft             BMP New Statistics               October 2024
       which has been declared suppressed by the BGP Route Flap Damping
       mechanism as described in Section 2.2 of [RFC2439].
 
-   *  Type = TBD10: (64-bit Gauge) Number of routes in per-AFI/SAFI
-      marked as stale by any configuration.  The value is structured as:
-      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
-      Family Identifier (SAFI), followed by a 64-bit Gauge.  Stale
-      refers to a path which has been declared stale by the BGP Graceful
-      Restart mechanism as described in Section 4.1 of [RFC4724].
-
-   *  Type = TBD11: (64-bit Gauge) Number of routes in per-AFI/SAFI
-      marked as stale by LLGR.  The value is structured as: 2-byte
+   *  Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by any configuration.  The value is structured as: 2-byte
       Address Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.  Stale refers to a
+      path which has been declared stale by the BGP Graceful Restart
+      mechanism as described in Section 4.1 of [RFC4724].
+
+   *  Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by LLGR.  The value is structured as: 2-byte Address
+      Family Identifier (AFI), 1-byte Subsequent Address Family
       Identifier (SAFI), followed by a 64-bit Gauge.  Stale refers to a
       path which has been declared stale by the BGP Long-Lived Graceful
       Restart mechanism as described in Section 4.3 of [RFC9494].  This
@@ -220,18 +221,17 @@ Internet-Draft             BMP New Statistics               October 2024
 
 
 
-
-Srivastava, et al.        Expires 20 April 2025                 [Page 4]
+Srivastava, et al.        Expires 24 April 2025                 [Page 4]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
-   *  Type = TBD12: (64-bit Gauge) Number of routes left until reaching
-      the received route threshold as defined in Section 6.7 of
-      [RFC4271].  This value can increase or decrease base on ongoing
-      configuration changes of the peer's received route threshold.
+   *  Type = 29: (64-bit Gauge) Number of routes left until reaching the
+      received route threshold as defined in Section 6.7 of [RFC4271].
+      This value can increase or decrease base on ongoing configuration
+      changes of the peer's received route threshold.
 
-   *  Type = TBD13: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+   *  Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left
       until reaching the received route threshold as defined in
       Section 6.7 of [RFC4271].  This value can increase or decrease
       base on ongoing configuration changes of the peer's received route
@@ -239,24 +239,23 @@ Internet-Draft             BMP New Statistics               October 2024
       Identifier (AFI), 1-byte Subsequent Address Family Identifier
       (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD14: (64-bit Gauge) Number of routes left until reaching
-      the license-customized route threshold.  This value is affected by
+   *  Type = 31: (64-bit Gauge) Number of routes left until reaching the
+      license-customized route threshold.  This value is affected by
       whether a customized license exists for the relevant address
       family, and when the customized license is installed.  This value
       can increase or decrease based on current customized information
       of license.
 
       Since the license-customized route threshold is vendor specific,
-      this type value (TBD14) SHOULD use enterprise-specific TLV
-      encoding as described in Section 3.3 of
-      [I-D.ietf-grow-bmp-tlv-ebit].
+      this type value (31) SHOULD use enterprise-specific TLV encoding
+      as described in Section 3.3 of [I-D.ietf-grow-bmp-tlv-ebit].
 
-      For the enterprise-specific TLV of TBD14, E-bit SHOULD set to 1,
-      and TBD14 is 15 bits of TLV Type.  As enterprise-specific Type
-      value, TBD14 is determined by the Enterprise number, and does not
-      have to be defined by INNA.
+      For the enterprise-specific TLV of 31, E-bit SHOULD set to 1, and
+      31 is 15 bits of TLV Type.  As enterprise-specific Type value, 31
+      is determined by the Enterprise number, and does not have to be
+      defined by INNA.
 
-   *  Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+   *  Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left
       until reaching the license-customized route threshold.  This value
       is affected by whether a customized license exists for the
       relevant address family, and when the customized license is
@@ -266,38 +265,100 @@ Internet-Draft             BMP New Statistics               October 2024
       Family Identifier (SAFI), followed by a 64-bit Gauge.
 
       It's also since the license-customized route threshold is vendor
-      specific, this type value (TBD15) SHOULD also use enterprise-
-      specific TLV encoding as described in Section 3.3 of
+      specific, this type value (32) SHOULD also use enterprise-specific
+      TLV encoding as described in Section 3.3 of
       [I-D.ietf-grow-bmp-tlv-ebit].
 
-      For the enterprise-specific TLV of TBD15, E-bit SHOULD set to 1,
-      and TBD15 is 15 bits of TLV Type.  As enterprise-specific Type
-      value, TBD15 is determined by the Enterprise number, and also does
-      not have to be defined by INNA.
+      For the enterprise-specific TLV of 32, E-bit SHOULD set to 1, and
+      32 is 15 bits of TLV Type.  As enterprise-specific Type value, 32
+      is determined by the Enterprise number, and also does not have to
+      be defined by INNA.
 
 
 
-Srivastava, et al.        Expires 20 April 2025                 [Page 5]
+
+Srivastava, et al.        Expires 24 April 2025                 [Page 5]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
-   *  Type = TBD16: (64-bit Gauge) Current Number of routes rejected by
+   *  Type = 33: (64-bit Gauge) Current Number of routes rejected by
       exceeding the length threshold of as-path.  This value can
       increase or decrease base on ongoing configuration changes of the
       length threshold of as-path.  For as-path attribute information,
       please refer to [RFC4271].
 
-   *  Type = TBD17: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI rejected by exceeding the length threshold of as-path.  This
-      value can increase or decrease base on ongoing configuration
+   *  Type = 34: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      rejected by exceeding the length threshold of as-path.  This value
+      can increase or decrease base on ongoing configuration changes of
+      the length threshold of as-path.  The value is structured as:
+      2-byte Address Family Identifier (AFI), 1-byte Subsequent Address
+      Family Identifier (SAFI), followed by a 64-bit Gauge.
+
+   *  Type = 35: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In-Post-Policy invalidated by verifying route origin
+      Autonomous System (AS) number through the Route Origin
+      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
+      [RFC6811].  This value can increase or decrease base on ongoing
+      ROA changes of RPKI.  The value is structured as: 2-byte Address
+      Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.
+
+   *  Type = 36: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In-Post-Policy validated by verifying route origin
+      Autonomous System (AS) number through the Route Origin
+      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
+      [RFC6811].  This value can increase or decrease base on ongoing
+      ROA changes of RPKI.  The value is structured as: 2-byte Address
+      Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.
+
+   *  Type = 37: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In-Post-Policy not found by verifying route origin
+      Autonomous System (AS) number through the Route Origin
+      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
+      [RFC6811].  This value can increase or decrease base on ongoing
+      ROA changes of RPKI.  The value is structured as: 2-byte Address
+      Family Identifier (AFI), 1-byte Subsequent Address Family
+      Identifier (SAFI), followed by a 64-bit Gauge.
+
+2.2.  RIB-OUT Statistics Definition
+
+   *  Type = 38: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      rejected by outbound policy.  These routes are active routes which
+      should otherwise would have been advertised in absense of outbound
+      policy which rejected them.  The value can increase or decrease
+      based upon ongoing configuration change.  The value is structured
+      as: 2-byte Address Family Identifier (AFI), 1-byte Subsequent
+
+
+
+Srivastava, et al.        Expires 24 April 2025                 [Page 6]
+
+Internet-Draft             BMP New Statistics               October 2024
+
+
+      Address Family Identifier (SAFI), followed by a 64-bit Gauge.
+      This counter only considers routes distributed from loc-rib into
+      the adj-ribs-out and does not include cases like BGP add-paths
+      [RFC7911].
+
+   *  Type = 39: (64-bit Gauge) Current Number of routes refused to be
+      sent by exceeding the length threshold of as-path.  This value can
+      increase or decrease base on ongoing configuration changes of the
+      length threshold of as-path.  For as-path attribute information,
+      please refer to [RFC4271].
+
+   *  Type = 40: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      refused to be sent by exceeding the length threshold of as-path.
+      This value can increase or decrease base on ongoing configuration
       changes of the length threshold of as-path.  The value is
       structured as: 2-byte Address Family Identifier (AFI), 1-byte
       Subsequent Address Family Identifier (SAFI), followed by a 64-bit
       Gauge.
 
-   *  Type = TBD18: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-In-Post-Policy invalidated by verifying route origin
+   *  Type = 41: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out-Post-Policy invalidated by verifying route origin
       Autonomous System (AS) number through the Route Origin
       Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
       [RFC6811].  This value can increase or decrease base on ongoing
@@ -305,8 +366,8 @@ Internet-Draft             BMP New Statistics               October 2024
       Family Identifier (AFI), 1-byte Subsequent Address Family
       Identifier (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD19: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-In-Post-Policy validated by verifying route origin
+   *  Type = 42: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out-Post-Policy validated by verifying route origin
       Autonomous System (AS) number through the Route Origin
       Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
       [RFC6811].  This value can increase or decrease base on ongoing
@@ -314,8 +375,8 @@ Internet-Draft             BMP New Statistics               October 2024
       Family Identifier (AFI), 1-byte Subsequent Address Family
       Identifier (SAFI), followed by a 64-bit Gauge.
 
-   *  Type = TBD20: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-In-Post-Policy not found by verifying route origin
+   *  Type = 43: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out-Post-Policy not found by verifying route origin
       Autonomous System (AS) number through the Route Origin
       Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
       [RFC6811].  This value can increase or decrease base on ongoing
@@ -328,160 +389,92 @@ Internet-Draft             BMP New Statistics               October 2024
 
 
 
-
-
-
-
-
-Srivastava, et al.        Expires 20 April 2025                 [Page 6]
+Srivastava, et al.        Expires 24 April 2025                 [Page 7]
 
 Internet-Draft             BMP New Statistics               October 2024
 
-
-2.2.  RIB-OUT Statistics Definition
-
-   *  Type = TBD21: (64-bit Gauge) Current number of routes in per-AFI/
-      SAFI rejected by outbound policy.  These routes are active routes
-      which should otherwise would have been advertised in absense of
-      outbound policy which rejected them.  The value can increase or
-      decrease based upon ongoing configuration change.  The value is
-      structured as: 2-byte Address Family Identifier (AFI), 1-byte
-      Subsequent Address Family Identifier (SAFI), followed by a 64-bit
-      Gauge.  This counter only considers routes distributed from loc-
-      rib into the adj-ribs-out and does not include cases like BGP add-
-      paths [RFC7911].
-
-   *  Type = TBD22: (64-bit Gauge) Current Number of routes refused to
-      be sent by exceeding the length threshold of as-path.  This value
-      can increase or decrease base on ongoing configuration changes of
-      the length threshold of as-path.  For as-path attribute
-      information, please refer to [RFC4271].
-
-   *  Type = TBD23: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI refused to be sent by exceeding the length threshold of as-
-      path.  This value can increase or decrease base on ongoing
-      configuration changes of the length threshold of as-path.  The
-      value is structured as: 2-byte Address Family Identifier (AFI),
-      1-byte Subsequent Address Family Identifier (SAFI), followed by a
-      64-bit Gauge.
-
-   *  Type = TBD24: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-Out-Post-Policy invalidated by verifying route
-      origin Autonomous System (AS) number through the Route Origin
-      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
-      [RFC6811].  This value can increase or decrease base on ongoing
-      ROA changes of RPKI.  The value is structured as: 2-byte Address
-      Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
-
-   *  Type = TBD25: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-Out-Post-Policy validated by verifying route origin
-      Autonomous System (AS) number through the Route Origin
-      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
-      [RFC6811].  This value can increase or decrease base on ongoing
-      ROA changes of RPKI.  The value is structured as: 2-byte Address
-      Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
-
-   *  Type = TBD26: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-Out-Post-Policy not found by verifying route origin
-      Autonomous System (AS) number through the Route Origin
-
-
-
-Srivastava, et al.        Expires 20 April 2025                 [Page 7]
-
-Internet-Draft             BMP New Statistics               October 2024
-
-
-      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
-      [RFC6811].  This value can increase or decrease base on ongoing
-      ROA changes of RPKI.  The value is structured as: 2-byte Address
-      Family Identifier (AFI), 1-byte Subsequent Address Family
-      Identifier (SAFI), followed by a 64-bit Gauge.
 
 3.  IANA Considerations
 
-   This document requests that IANA assign the following new parameters
-   to the BMP parameters name space (https://www.iana.org/assignments/
-   bmp-parameters/bmp-parameters.xhtml).
+   IANA has assigned the following new parameters in the BMP Statistics
+   Types registry, part of the BMP parameters registry group
+   (https://www.iana.org/assignments/bmp-parameters/bmp-
+   parameters.xhtml).
 
 3.1.  BMP RIB-IN Statistics Types
 
    This document defines new BMP RIB-IN statistic types for statistics
    reporting (Section 2.1):
 
-   *  Type = TBD1: (64-bit Gauge) Number of routes currently in Adj-
-      RIBs-In Pre-Policy.
+   *  Type = 18: (64-bit Gauge) Number of routes currently in Adj-RIBs-
+      In Pre-Policy.
 
-   *  Type = TBD2: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 19: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI Adj-RIBs-In Pre-Policy.
 
-   *  Type = TBD3: (64-bit Gauge) Number of routes currently in Adj-
-      RIBs-In Post-Policy.
+   *  Type = 20: (64-bit Gauge) Number of routes currently in Adj-RIBs-
+      In Post-Policy.
 
-   *  Type = TBD4: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 21: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI Adj-RIBs-In Post-Policy.
 
-   *  Type = TBD5: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 22: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI rejected by inbound policy.
 
-   *  Type = TBD6: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 23: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI accepted by inbound policy.
 
-   *  Type = TBD7: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 24: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI selected as primary route.
 
-   *  Type = TBD8: (64-bit Gauge) Number of routes currently in per-AFI/
+   *  Type = 25: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI selected as backup route.
 
-   *  Type = TBD9: (64-bit Gauge) Number of routes in per-AFI/SAFI
+   *  Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI
       suppressed by configured route damping policy.
 
-   *  Type = TBD10: (64-bit Gauge) Number of routes in per-AFI/SAFI
-      marked as stale by any configuration.
+   *  Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by any configuration.
+
+   *  Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by LLGR.
+
+   *  Type = 29: (64-bit Gauge) Number of routes left until reaching the
+      received route threshold.
 
 
 
 
-
-Srivastava, et al.        Expires 20 April 2025                 [Page 8]
+Srivastava, et al.        Expires 24 April 2025                 [Page 8]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
-   *  Type = TBD11: (64-bit Gauge) Number of routes in per-AFI/SAFI
-      marked as stale by LLGR.
-
-   *  Type = TBD12: (64-bit Gauge) Number of routes left until reaching
-      the received route threshold.
-
-   *  Type = TBD13: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+   *  Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left
       until reaching the received route threshold.
 
-   *  Type = TBD14: (64-bit Gauge) Number of routes left until reaching
-      the license-customized route threshold.
+   *  Type = 31: (64-bit Gauge) Number of routes left until reaching the
+      license-customized route threshold.
 
-   *  Type = TBD15: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+   *  Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left
       until reaching the license-customized route threshold.
 
-   *  Type = TBD16: (64-bit Gauge) Number of routes currently rejected
-      due to exceeding the length threshold of as-path.
+   *  Type = 33: (64-bit Gauge) Number of routes currently rejected due
+      to exceeding the length threshold of as-path.
 
-   *  Type = TBD17: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI rejected due to exceeding the length threshold of as-
-      path.
+   *  Type = 34: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI rejected due to exceeding the length threshold of as-path.
 
-   *  Type = TBD18: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-In Post-Policy invalidated after verifying route
+   *  Type = 35: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy invalidated after verifying route
       origin AS number through the ROA of RPKI.
 
-   *  Type = TBD19: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-In Post-Policy validated after verifying route
+   *  Type = 36: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy validated after verifying route
       origin AS number through the ROA of RPKI.
 
-   *  Type = TBD20: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-In Post-Policy not found after verifying route
+   *  Type = 37: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy not found after verifying route
       origin AS number through the ROA of RPKI.
 
 3.2.  BMP RIB-OUT Statistics Types
@@ -489,33 +482,32 @@ Internet-Draft             BMP New Statistics               October 2024
    This document defines new BMP RIB-OUT statistic types for statistics
    reporting (Section 2.2):
 
-   *  Type = TBD21: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI rejected by outbound policy.
+   *  Type = 38: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI rejected by outbound policy.
 
-   *  Type = TBD22: (64-bit Gauge) Number of routes currently refused by
+   *  Type = 39: (64-bit Gauge) Number of routes currently refused by
       exceeding the length threshold of as-path.
 
-   *  Type = TBD23: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI refused by exceeding the length threshold of as-path.
+   *  Type = 40: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI refused by exceeding the length threshold of as-path.
+
+   *  Type = 41: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route
+      origin AS number through the ROA of RPKI.
+
+   *  Type = 42: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy validated after verifying route
+      origin AS number through the ROA of RPKI.
 
 
 
-
-Srivastava, et al.        Expires 20 April 2025                 [Page 9]
+Srivastava, et al.        Expires 24 April 2025                 [Page 9]
 
 Internet-Draft             BMP New Statistics               October 2024
 
 
-   *  Type = TBD24: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-Out Post-Policy invalidated after verifying
-      route origin AS number through the ROA of RPKI.
-
-   *  Type = TBD25: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-Out Post-Policy validated after verifying route
-      origin AS number through the ROA of RPKI.
-
-   *  Type = TBD26: (64-bit Gauge) Number of routes currently in per-
-      AFI/SAFI Adj-RIBs-Out Post-Policy not found after verifying route
+   *  Type = 43: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy not found after verifying route
       origin AS number through the ROA of RPKI.
 
 4.  Security Considerations
@@ -551,17 +543,6 @@ Internet-Draft             BMP New Statistics               October 2024
               2023, <https://datatracker.ietf.org/doc/html/draft-
               lapukhov-bgp-ecmp-considerations-12>.
 
-
-
-
-
-
-
-Srivastava, et al.        Expires 20 April 2025                [Page 10]
-
-Internet-Draft             BMP New Statistics               October 2024
-
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -570,6 +551,16 @@ Internet-Draft             BMP New Statistics               October 2024
    [RFC2439]  Villamizar, C., Chandra, R., and R. Govindan, "BGP Route
               Flap Damping", RFC 2439, DOI 10.17487/RFC2439, November
               1998, <https://www.rfc-editor.org/info/rfc2439>.
+
+
+
+
+
+
+Srivastava, et al.        Expires 24 April 2025                [Page 10]
+
+Internet-Draft             BMP New Statistics               October 2024
+
 
    [RFC4271]  Rekhter, Y., Ed., Li, T., Ed., and S. Hares, Ed., "A
               Border Gateway Protocol 4 (BGP-4)", RFC 4271,
@@ -607,22 +598,24 @@ Internet-Draft             BMP New Statistics               October 2024
 
 Authors' Addresses
 
-
-
-
-
-
-
-Srivastava, et al.        Expires 20 April 2025                [Page 11]
-
-Internet-Draft             BMP New Statistics               October 2024
-
-
    Mukul Srivastava
    Juniper Networks
    10 Technology Park Dr
    Westford, MA 01886
    United States of America
+   Email: msri@juniper.net
+
+
+
+
+
+
+
+
+
+Srivastava, et al.        Expires 24 April 2025                [Page 11]
+
+Internet-Draft             BMP New Statistics               October 2024
 
 
    Yisong Liu
@@ -631,6 +624,7 @@ Internet-Draft             BMP New Statistics               October 2024
    Beijing
    Xicheng District, 100053
    China
+   Email: liuyisong@chinamobile.com
 
 
    Changwang Lin
@@ -639,6 +633,7 @@ Internet-Draft             BMP New Statistics               October 2024
    Beijing
    Haidian District, 100094
    China
+   Email: linchangwang.04414@h3c.com
 
 
    Jinming Li
@@ -647,6 +642,7 @@ Internet-Draft             BMP New Statistics               October 2024
    Beijing
    Xicheng District, 100053
    China
+   Email: lijinming@chinamobile.com
 
 
 
@@ -669,4 +665,8 @@ Internet-Draft             BMP New Statistics               October 2024
 
 
 
-Srivastava, et al.        Expires 20 April 2025                [Page 12]
+
+
+
+
+Srivastava, et al.        Expires 24 April 2025                [Page 12]
