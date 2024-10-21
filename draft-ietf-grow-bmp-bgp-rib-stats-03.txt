@@ -14,7 +14,7 @@ Expires: 24 April 2025                                            C. Lin
 
 
                  Definition For New BMP Statistics Type
-                  draft-ietf-grow-bmp-bgp-rib-stats-04
+                  draft-ietf-grow-bmp-bgp-rib-stats-05
 
 Abstract
 
