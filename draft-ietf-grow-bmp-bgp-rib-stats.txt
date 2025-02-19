@@ -1,0 +1,728 @@
+
+
+
+
+GROW                                                       M. Srivastava
+Internet-Draft                                          Juniper Networks
+Updates: 7854 (if approved)                                       Y. Liu
+Intended status: Standards Track                            China Mobile
+Expires: 22 August 2025                                           C. Lin
+                                                    New H3C Technologies
+                                                                   J. Li
+                                                            China Mobile
+                                                        18 February 2025
+
+
+   Definition For New BGP Monitoring Protocol (BMP) Statistics Types
+                  draft-ietf-grow-bmp-bgp-rib-stats-06
+
+Abstract
+
+   RFC 7854 defines different BGP Monitoring Protocol (BMP) statistics
+   message types to observe events that occur on a monitored router.
+   This document updates RFC 7854 by adding new statistics type to
+   monitor BMP Adj-RIB-In and Adj-RIB-Out Routing Information Bases
+   (RIBs).
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 22 August 2025.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 1]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   2
+   2.  Statistics Definition . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Adj-RIB-In Statistics Definition  . . . . . . . . . . . .   3
+     2.2.  Adj-RIB-Out Statistics Definition . . . . . . . . . . . .   6
+   3.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .   9
+     5.1.  Juniper Networks  . . . . . . . . . . . . . . . . . . . .  10
+     5.2.  New H3C Technologies  . . . . . . . . . . . . . . . . . .  10
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
+     7.2.  Informational References  . . . . . . . . . . . . . . . .  12
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+
+1.  Introduction
+
+   Section 4.8 of [RFC7854] defines a number of different BGP Monitoring
+   Protocol (BMP) statistics types to observe major events that occur on
+   a monitored router.  Stats are either counters or gauges.
+   Section 6.2 of [RFC8671] also defines several BMP statistics types
+   for Adj-RIB-Out of a monitored router.
+
+   This document defines new gauges for BMP statistics message.  The
+   format of the BMP statistics message remains same as defined in
+   [RFC7854].
+
+1.1.  Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   The terminology in this document aligns with [RFC7854] and [RFC8671].
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 2]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+2.  Statistics Definition
+
+   This section defines different statistics type for Adj-RIB-In and
+   Adj-RIB-Out monitoring type.
+
+2.1.  Adj-RIB-In Statistics Definition
+
+   *  Type = 18: (64-bit Gauge) Current number of routes in Adj-RIBs-In
+      Pre-Policy [RFC7854].  Note that this gauge updates stats type 7
+      defined in [RFC7854] and makes it an explicit for Adj-RIBs-In Pre-
+      Policy .
+
+   *  Type = 19: (64-bit Gauge) Current number of routes in per-Address
+      Family Identifier (AFI)/Subsequent Address Family Identifier
+      (SAFI) Adj-RIBs-In Pre-Policy.  Note that this gauge is similar
+      from stats type 9 defined in [RFC7854] and makes it a explicit for
+      Adj-RIBs-In Pre-Policy.  The value is structured as: 2-byte AFI,
+      1-byte SAFI, followed by a 64-bit Gauge.
+
+   *  Type = 20: (64-bit Gauge) Current number of routes in Adj-RIBs-In
+      Post-Policy [RFC7854].
+
+   *  Type = 21: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      Adj-RIBs-In Post-Policy.  The value is structured as: 2-byte AFI,
+      1-byte SAFI, followed by a 64-bit Gauge.
+
+   *  Type = 22: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      rejected by inbound policy.  Note that this gauge is different
+      from stats type 0 defined in [RFC7854].  The stats type 0 in
+      [RFC7854] is a 32-counter which is monotonically increasing number
+      and doesn't represent the current number of routes rejected by an
+      inbound policy due to ongoing configuration changes.  The value is
+      structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit
+      Gauge.
+
+   *  Type = 23: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      accepted by inbound policy.  The value is structured as: 2-byte
+      AFI, 1-byte SAFI, followed by a 64-bit Gauge.  Some
+      implementations, or configurations in implementations, may discard
+      routes that do not match policy and thus the accepted count and
+      the Adj-RIB-In counts will be identical in such cases.
+
+
+
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 3]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = 24: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      selected as primary route.  The value is structured as: 2-byte
+      AFI, 1-byte SAFI, followed by a 64-bit Gauge.  A primary route is
+      a recursive or non-recursive path whose next-hop resolution ends
+      with an adjacency [I-D.ietf-rtgwg-bgp-pic].  A prefix can have
+      more than one primary path if multipath is configured
+      [I-D.lapukhov-bgp-ecmp-considerations].  A best path is also
+      considered as a primary path.
+
+   *  Type = 25: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      selected as a backup route.  The value is structured as: 2-byte
+      AFI, 1-byte SAFI, followed by a 64-bit Gauge.  A backup path is
+      also installed in the Loc-RIB, but it is not used until some or
+      all primary paths become unreachable.  Backup paths are used for
+      fast convergence in the event of failures.
+
+   *  Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      suppressed by configured route damping policy.  The value is
+      structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit
+      Gauge.  Suppressed refers to a path which has been declared
+      suppressed by the BGP Route Flap Damping mechanism as described in
+      Section 2.2 of [RFC2439].
+
+   *  Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by any configuration.  The value is structured as: 2-byte
+      AFI, 1-byte SAFI, followed by a 64-bit Gauge.  Stale refers to a
+      path which has been declared stale by the BGP Graceful Restart
+      mechanism as described in Section 4.1 of [RFC4724], such as the
+      routes filtered by a remote peer through application of policies
+      during a graceful restart.
+
+   *  Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by Long-Lived Graceful Restart (LLGR).  The value is
+      structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit
+      Gauge.  Stale refers to a path which has been declared stale by
+      the BGP LLGR mechanism as described in Section 4.3 of [RFC9494].
+
+   *  Type = 29: (64-bit Gauge) Number of routes left until reaching the
+      received route threshold as defined in Section 6.7 of [RFC4271].
+
+   *  Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+      until reaching the received route threshold as defined in
+      Section 6.7 of [RFC4271].  The value is structured as: 2-byte AFI,
+      1-byte SAFI, followed by a 64-bit Gauge.
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 4]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = 31: (64-bit Gauge) Number of routes left until reaching a
+      license-customized route threshold.  This value is affected by
+      whether a customized license exists for the relevant address
+      family, and when the customized license is installed.
+
+      If the license-customized route threshold is vendor specific, this
+      type value (31) SHOULD use enterprise-specific TLV encoding as
+      described in Section 3.3 of [I-D.ietf-grow-bmp-tlv-ebit].
+
+   *  Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+      until reaching a license-customized route threshold.  This value
+      is affected by whether a customized license exists for the
+      relevant address family, and when the customized license is
+      installed.  The value is structured as: 2-byte AFI, 1-byte SAFI,
+      followed by a 64-bit Gauge.
+
+      Also if the license-customized route threshold is vendor specific,
+      this type value (32) SHOULD also use enterprise-specific TLV
+      encoding as described in Section 3.3 of
+      [I-D.ietf-grow-bmp-tlv-ebit].
+
+   *  Type = 33: (64-bit Gauge) Current Number of routes rejected by
+      exceeding the length threshold of AS-PATH.
+
+   *  Type = 34: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      rejected by exceeding the length threshold of AS-PATH.  The value
+      is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit
+      Gauge.
+
+   *  Type = 35: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In Post-Policy invalidated through the Route Origin
+      Authorization (ROA) of Resource Public Key Infrastructure (RPKI)
+      [RFC6811].  This is total number of routes invalidated due to
+      origin Autonomous System (AS) number mismatch and prefix length
+      mismatch.  The value is structured as: 2-byte AFI, 1-byte SAFI,
+      followed by a 64-bit Gauge.
+
+   *  Type = 36: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In Post-Policy validated by verifying route origin AS
+      number through the ROA of RPKI [RFC6811].  The value is structured
+      as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
+
+   *  Type = 37: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-In Post-Policy not found by verifying route origin AS
+      number through the ROA of RPKI [RFC6811].  The value is structured
+      as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 5]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = TBD1: (64-bit Gauge) Current Number of routes in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy invalidated due to origin AS mismatch
+      by verifying route origin AS number through the ROA of RPKI
+      [RFC6811].  The value is structured as: 2-byte AFI, 1-byte SAFI,
+      followed by a 64-bit Gauge.
+
+   *  Type = TBD2: (64-bit Gauge) Current Number of routes in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy invalidated due to prefix length
+      mismatch by verifying route origin AS number through the ROA of
+      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
+      SAFI, followed by a 64-bit Gauge.
+
+2.2.  Adj-RIB-Out Statistics Definition
+
+   *  Type = 38: (64-bit Gauge) Current number of routes in per-AFI/SAFI
+      rejected by outbound policy.  These routes are active routes which
+      should otherwise would have been advertised in absence of outbound
+      policy which rejected them.  The value is structured as: 2-byte
+      AFI, 1-byte SAFI, followed by a 64-bit Gauge.  This counter only
+      considers routes distributed from Loc-RIB into the Adj-RIBs-Out
+      and does not include cases like BGP add-paths [RFC7911].
+
+   *  Type = 39: (64-bit Gauge) Current Number of routes refused to be
+      sent by exceeding the length threshold of AS-PATH.
+
+   *  Type = 40: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      refused to be sent by exceeding the length threshold of AS-PATH.
+      The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a
+      64-bit Gauge.
+
+   *  Type = 41: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out Post-Policy invalidated through the ROA of RPKI
+      [RFC6811].  This is total number of routes invalidated due to
+      origin AS number mismatch and prefix length mismatch.  The value
+      is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit
+      Gauge.
+
+   *  Type = 42: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out Post-Policy validated by verifying route origin AS
+      number through the ROA of RPKI [RFC6811].  The value is structured
+      as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
+
+   *  Type = 43: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
+      Adj-RIBs-Out Post-Policy not found by verifying route origin AS
+      number through the ROA of RPKI [RFC6811].  The value is structured
+      as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 6]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = TBD3: (64-bit Gauge) Current Number of routes in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy invalidated due to origin AS
+      mismatch by verifying route origin AS number through the ROA of
+      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
+      SAFI, followed by a 64-bit Gauge.
+
+   *  Type = TBD4: (64-bit Gauge) Current Number of routes in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy invalidated due to prefix length
+      mismatch by verifying route origin AS number through the ROA of
+      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
+      SAFI, followed by a 64-bit Gauge.
+
+3.  IANA Considerations
+
+   IANA has assigned the following new parameters in the BMP Statistics
+   Types registry, part of the BMP parameters registry group
+   (https://www.iana.org/assignments/bmp-parameters/bmp-
+   parameters.xhtml).
+
+   This document requests IANA to update the reference cited for the
+   entries with the RFC number to be assigned to this document.
+
+   *  Type = 18: (64-bit Gauge) Number of routes currently in Adj-RIBs-
+      In Pre-Policy.
+
+   *  Type = 19: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Pre-Policy.
+
+   *  Type = 20: (64-bit Gauge) Number of routes currently in Adj-RIBs-
+      In Post-Policy.
+
+   *  Type = 21: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy.
+
+   *  Type = 22: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI rejected by inbound policy.
+
+   *  Type = 23: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI accepted by inbound policy.
+
+   *  Type = 24: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI selected as primary route.
+
+   *  Type = 25: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI selected as a backup route.
+
+   *  Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI
+      suppressed by configured route damping policy.
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 7]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by any configuration.
+
+   *  Type = 28: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
+      as stale by LLGR.
+
+   *  Type = 29: (64-bit Gauge) Number of routes left until reaching the
+      received route threshold.
+
+   *  Type = 30: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+      until reaching the received route threshold.
+
+   *  Type = 31: (64-bit Gauge) Number of routes left until reaching a
+      license-customized route threshold.
+
+   *  Type = 32: (64-bit Gauge) Number of routes in per-AFI/SAFI left
+      until reaching a license-customized route threshold.
+
+   *  Type = 33: (64-bit Gauge) Number of routes currently rejected due
+      to exceeding the length threshold of AS-PATH.
+
+   *  Type = 34: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI rejected due to exceeding the length threshold of AS-PATH.
+
+   *  Type = 35: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy invalidated after verifying route
+      origin AS number through the ROA of RPKI.
+
+   *  Type = 36: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy validated after verifying route
+      origin AS number through the ROA of RPKI.
+
+   *  Type = 37: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-In Post-Policy not found after verifying route
+      origin AS number through the ROA of RPKI.
+
+   *  Type = 38: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI rejected by outbound policy.
+
+   *  Type = 39: (64-bit Gauge) Number of routes currently refused by
+      exceeding the length threshold of AS-PATH.
+
+   *  Type = 40: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI refused by exceeding the length threshold of AS-PATH.
+
+   *  Type = 41: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route
+      origin AS number through the ROA of RPKI.
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 8]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Type = 42: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy validated after verifying route
+      origin AS number through the ROA of RPKI.
+
+   *  Type = 43: (64-bit Gauge) Number of routes currently in per-AFI/
+      SAFI Adj-RIBs-Out Post-Policy not found after verifying route
+      origin AS number through the ROA of RPKI.
+
+   This document also requests that IANA assign the following additional
+   parameters to the BMP parameters name space
+   (https://www.iana.org/assignments/bmp-parameters/bmp-
+   parameters.xhtml).
+
+   *  Type = TBD1: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
+      RIBs-In Post-Policy invalidated due to origin AS mismatch by
+      verifying route origin AS number through the ROA of RPKI.
+
+   *  Type = TBD2: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
+      RIBs-In Post-Policy invalidated due to prefix length mismatch by
+      verifying route origin AS number through the ROA of RPKI.
+
+   *  Type = TBD3: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
+      RIBs-Out Post-Policy invalidated due to origin AS mismatch by
+      verifying route origin AS number through the ROA of RPKI.
+
+   *  Type = TBD4: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
+      RIBs-Out Post-Policy invalidated due to prefix length mismatch by
+      verifying route origin AS number through the ROA of RPKI.
+
+4.  Security Considerations
+
+   The considerations in Section 11 of [RFC7854] apply to this document.
+   It is also believed that this document does not add any additional
+   security considerations.
+
+5.  Implementation Status
+
+   Note to the RFC Editor - remove this section before publication, as
+   well as remove the reference to [RFC7942].
+
+   This section records the status of known implementations of the
+   protocol defined by this specification at the time of posting of this
+   Internet-Draft, and is based on a proposal described in [RFC7942].
+   The description of implementations in this section is intended to
+   assist the IETF in its decision processes in progressing drafts to
+   RFCs.  Please note that the listing of any individual implementation
+   here does not imply endorsement by the IETF.  Furthermore, no effort
+   has been spent to verify the information presented here that was
+
+
+
+Srivastava, et al.       Expires 22 August 2025                 [Page 9]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   supplied by IETF contributors.  This is not intended as, and must not
+   be construed to be, a catalog of available implementations or their
+   features.  Readers are advised to note that other implementations may
+   exist.
+
+   According to [RFC7942], "this will allow reviewers and working groups
+   to assign due consideration to documents that have the benefit of
+   running code, which may serve as evidence of valuable experimentation
+   and feedback that have made the implemented protocols more mature.
+   It is up to the individual working groups to use this information as
+   they see fit".
+
+5.1.  Juniper Networks
+
+   *  Organization: Juniper Networks.
+
+   *  Implementation:
+
+   *  Description: Most of the RIB-IN statistics are implemented.
+
+   *  Maturity Level: Product
+
+   *  Coverage:
+
+   *  Version: Draft-05
+
+   *  Licensing: N/A
+
+   *  Implementation experience: Nothing specific.
+
+   *  Contact: msri@juniper.net
+
+   *  Last updated: January 20, 2025
+
+5.2.  New H3C Technologies
+
+   *  Organization: New H3C Technologies.
+
+   *  Implementation: H3C CR16000, CR19000 series routers implementation
+      of New BMP Statistics Type.
+
+   *  Description: Almost all New types have been implemented in above-
+      mentioned New H3C Products (running Version 7.1.086 and above).
+
+   *  Maturity Level: Product
+
+   *  Coverage: Almost all New types.
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                [Page 10]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   *  Version: Draft-05
+
+   *  Licensing: N/A
+
+   *  Implementation experience: Nothing specific.
+
+   *  Contact: linchangwang.04414@h3c.com
+
+   *  Last updated: January 20, 2025
+
+6.  Acknowledgements
+
+   The author would like to thank Jeff Haas and Mohamed Boucadair for
+   their valuable input.
+
+7.  References
+
+7.1.  Normative References
+
+   [I-D.ietf-grow-bmp-tlv-ebit]
+              Lucente, P. and Y. Gu, "Support for Enterprise-specific
+              TLVs in the BGP Monitoring Protocol", Work in Progress,
+              Internet-Draft, draft-ietf-grow-bmp-tlv-ebit-06, 17
+              January 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-grow-bmp-tlv-ebit-06>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC2439]  Villamizar, C., Chandra, R., and R. Govindan, "BGP Route
+              Flap Damping", RFC 2439, DOI 10.17487/RFC2439, November
+              1998, <https://www.rfc-editor.org/info/rfc2439>.
+
+   [RFC4271]  Rekhter, Y., Ed., Li, T., Ed., and S. Hares, Ed., "A
+              Border Gateway Protocol 4 (BGP-4)", RFC 4271,
+              DOI 10.17487/RFC4271, January 2006,
+              <https://www.rfc-editor.org/info/rfc4271>.
+
+   [RFC4724]  Sangli, S., Chen, E., Fernando, R., Scudder, J., and Y.
+              Rekhter, "Graceful Restart Mechanism for BGP", RFC 4724,
+              DOI 10.17487/RFC4724, January 2007,
+              <https://www.rfc-editor.org/info/rfc4724>.
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                [Page 11]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   [RFC6811]  Mohapatra, P., Scudder, J., Ward, D., Bush, R., and R.
+              Austein, "BGP Prefix Origin Validation", RFC 6811,
+              DOI 10.17487/RFC6811, January 2013,
+              <https://www.rfc-editor.org/info/rfc6811>.
+
+   [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
+              Monitoring Protocol (BMP)", RFC 7854,
+              DOI 10.17487/RFC7854, June 2016,
+              <https://www.rfc-editor.org/info/rfc7854>.
+
+   [RFC7911]  Walton, D., Retana, A., Chen, E., and J. Scudder,
+              "Advertisement of Multiple Paths in BGP", RFC 7911,
+              DOI 10.17487/RFC7911, July 2016,
+              <https://www.rfc-editor.org/info/rfc7911>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [RFC8671]  Evens, T., Bayraktar, S., Lucente, P., Mi, P., and S.
+              Zhuang, "Support for Adj-RIB-Out in the BGP Monitoring
+              Protocol (BMP)", RFC 8671, DOI 10.17487/RFC8671, November
+              2019, <https://www.rfc-editor.org/info/rfc8671>.
+
+   [RFC9494]  Uttaro, J., Chen, E., Decraene, B., and J. Scudder, "Long-
+              Lived Graceful Restart for BGP", RFC 9494,
+              DOI 10.17487/RFC9494, November 2023,
+              <https://www.rfc-editor.org/info/rfc9494>.
+
+7.2.  Informational References
+
+   [I-D.ietf-rtgwg-bgp-pic]
+              Bashandy, A., Filsfils, C., and P. Mohapatra, "BGP Prefix
+              Independent Convergence", Work in Progress, Internet-
+              Draft, draft-ietf-rtgwg-bgp-pic-21, 7 July 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-rtgwg-
+              bgp-pic-21>.
+
+   [I-D.lapukhov-bgp-ecmp-considerations]
+              Lapukhov, P. and J. Tantsura, "Equal-Cost Multipath
+              Considerations for BGP", Work in Progress, Internet-Draft,
+              draft-lapukhov-bgp-ecmp-considerations-13, 6 January 2025,
+              <https://datatracker.ietf.org/doc/html/draft-lapukhov-bgp-
+              ecmp-considerations-13>.
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                [Page 12]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+   [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
+              Code: The Implementation Status Section", BCP 205,
+              RFC 7942, DOI 10.17487/RFC7942, July 2016,
+              <https://www.rfc-editor.org/info/rfc7942>.
+
+Authors' Addresses
+
+   Mukul Srivastava
+   Juniper Networks
+   10 Technology Park Dr
+   Westford, MA 01886
+   United States of America
+   Email: msri@juniper.net
+
+
+   Yisong Liu
+   China Mobile
+   32 Xuanwumen West Street
+   Beijing
+   Xicheng District, 100053
+   China
+   Email: liuyisong@chinamobile.com
+
+
+   Changwang Lin
+   New H3C Technologies
+   8 Yongjia North Road
+   Beijing
+   Haidian District, 100094
+   China
+   Email: linchangwang.04414@h3c.com
+
+
+   Jinming Li
+   China Mobile
+   32 Xuanwumen West Street
+   Beijing
+   Xicheng District, 100053
+   China
+   Email: lijinming@chinamobile.com
+
+
+
+
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 22 August 2025                [Page 13]
