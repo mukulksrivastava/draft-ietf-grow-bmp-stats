@@ -4,25 +4,24 @@
 
 GROW                                                       M. Srivastava
 Internet-Draft                                          Juniper Networks
-Updates: 7854 (if approved)                                       Y. Liu
-Intended status: Standards Track                            China Mobile
-Expires: 22 August 2025                                           C. Lin
+Intended status: Standards Track                                  Y. Liu
+Expires: 24 August 2025                                     China Mobile
+                                                                  C. Lin
                                                     New H3C Technologies
                                                                    J. Li
                                                             China Mobile
-                                                        18 February 2025
+                                                        20 February 2025
 
 
    Definition For New BGP Monitoring Protocol (BMP) Statistics Types
-                  draft-ietf-grow-bmp-bgp-rib-stats-06
+                  draft-ietf-grow-bmp-bgp-rib-stats-07
 
 Abstract
 
    RFC 7854 defines different BGP Monitoring Protocol (BMP) statistics
    message types to observe events that occur on a monitored router.
-   This document updates RFC 7854 by adding new statistics type to
-   monitor BMP Adj-RIB-In and Adj-RIB-Out Routing Information Bases
-   (RIBs).
+   This document defines new statistics type to monitor BMP Adj-RIB-In
+   and Adj-RIB-Out Routing Information Bases (RIBs).
 
 Status of This Memo
 
@@ -39,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 August 2025.
+   This Internet-Draft will expire on 24 August 2025.
 
 Copyright Notice
 
@@ -50,15 +49,15 @@ Copyright Notice
    Provisions Relating to IETF Documents (https://trustee.ietf.org/
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
 
 
 
-Srivastava, et al.       Expires 22 August 2025                 [Page 1]
+Srivastava, et al.       Expires 24 August 2025                 [Page 1]
 
 Internet-Draft             BMP New Statistics              February 2025
 
 
-   and restrictions with respect to this document.  Code Components
    extracted from this document must include Revised BSD License text as
    described in Section 4.e of the Trust Legal Provisions and are
    provided without warranty as described in the Revised BSD License.
@@ -67,19 +66,19 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   2
-   2.  Statistics Definition . . . . . . . . . . . . . . . . . . . .   3
+   2.  Statistics Definition . . . . . . . . . . . . . . . . . . . .   2
      2.1.  Adj-RIB-In Statistics Definition  . . . . . . . . . . . .   3
-     2.2.  Adj-RIB-Out Statistics Definition . . . . . . . . . . . .   6
-   3.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .   9
-     5.1.  Juniper Networks  . . . . . . . . . . . . . . . . . . . .  10
+     2.2.  Adj-RIB-Out Statistics Definition . . . . . . . . . . . .   5
+   3.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   5.  Implementation Status . . . . . . . . . . . . . . . . . . . .   8
+     5.1.  Juniper Networks  . . . . . . . . . . . . . . . . . . . .   9
      5.2.  New H3C Technologies  . . . . . . . . . . . . . . . . . .  10
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
-     7.2.  Informational References  . . . . . . . . . . . . . . . .  12
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  10
+     7.2.  Informational References  . . . . . . . . . . . . . . . .  11
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
@@ -103,21 +102,17 @@ Table of Contents
 
    The terminology in this document aligns with [RFC7854] and [RFC8671].
 
-
-
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 2]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
 2.  Statistics Definition
 
    This section defines different statistics type for Adj-RIB-In and
    Adj-RIB-Out monitoring type.
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 2]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
 2.1.  Adj-RIB-In Statistics Definition
 
@@ -156,32 +151,25 @@ Internet-Draft             BMP New Statistics              February 2025
       routes that do not match policy and thus the accepted count and
       the Adj-RIB-In counts will be identical in such cases.
 
-
-
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 3]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    *  Type = 24: (64-bit Gauge) Number of routes in per-AFI/SAFI
       selected as primary route.  The value is structured as: 2-byte
       AFI, 1-byte SAFI, followed by a 64-bit Gauge.  A primary route is
       a recursive or non-recursive path whose next-hop resolution ends
       with an adjacency [I-D.ietf-rtgwg-bgp-pic].  A prefix can have
-      more than one primary path if multipath is configured
-      [I-D.lapukhov-bgp-ecmp-considerations].  A best path is also
-      considered as a primary path.
+      more than one primary path if multipath is configured.  A best
+      path is also considered as a primary path.
 
    *  Type = 25: (64-bit Gauge) Number of routes in per-AFI/SAFI
       selected as a backup route.  The value is structured as: 2-byte
       AFI, 1-byte SAFI, followed by a 64-bit Gauge.  A backup path is
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 3]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
       also installed in the Loc-RIB, but it is not used until some or
       all primary paths become unreachable.  Backup paths are used for
       fast convergence in the event of failures.
@@ -215,17 +203,6 @@ Internet-Draft             BMP New Statistics              February 2025
       Section 6.7 of [RFC4271].  The value is structured as: 2-byte AFI,
       1-byte SAFI, followed by a 64-bit Gauge.
 
-
-
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 4]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    *  Type = 31: (64-bit Gauge) Number of routes left until reaching a
       license-customized route threshold.  This value is affected by
       whether a customized license exists for the relevant address
@@ -241,6 +218,13 @@ Internet-Draft             BMP New Statistics              February 2025
       relevant address family, and when the customized license is
       installed.  The value is structured as: 2-byte AFI, 1-byte SAFI,
       followed by a 64-bit Gauge.
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 4]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
       Also if the license-customized route threshold is vendor specific,
       this type value (32) SHOULD also use enterprise-specific TLV
@@ -273,27 +257,6 @@ Internet-Draft             BMP New Statistics              February 2025
       number through the ROA of RPKI [RFC6811].  The value is structured
       as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
 
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 5]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
-   *  Type = TBD1: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-In Post-Policy invalidated due to origin AS mismatch
-      by verifying route origin AS number through the ROA of RPKI
-      [RFC6811].  The value is structured as: 2-byte AFI, 1-byte SAFI,
-      followed by a 64-bit Gauge.
-
-   *  Type = TBD2: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-In Post-Policy invalidated due to prefix length
-      mismatch by verifying route origin AS number through the ROA of
-      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
-      SAFI, followed by a 64-bit Gauge.
-
 2.2.  Adj-RIB-Out Statistics Definition
 
    *  Type = 38: (64-bit Gauge) Current number of routes in per-AFI/SAFI
@@ -312,6 +275,13 @@ Internet-Draft             BMP New Statistics              February 2025
       The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a
       64-bit Gauge.
 
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 5]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
    *  Type = 41: (64-bit Gauge) Current Number of routes in per-AFI/SAFI
       Adj-RIBs-Out Post-Policy invalidated through the ROA of RPKI
       [RFC6811].  This is total number of routes invalidated due to
@@ -328,27 +298,6 @@ Internet-Draft             BMP New Statistics              February 2025
       Adj-RIBs-Out Post-Policy not found by verifying route origin AS
       number through the ROA of RPKI [RFC6811].  The value is structured
       as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
-
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 6]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
-   *  Type = TBD3: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-Out Post-Policy invalidated due to origin AS
-      mismatch by verifying route origin AS number through the ROA of
-      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
-      SAFI, followed by a 64-bit Gauge.
-
-   *  Type = TBD4: (64-bit Gauge) Current Number of routes in per-AFI/
-      SAFI Adj-RIBs-Out Post-Policy invalidated due to prefix length
-      mismatch by verifying route origin AS number through the ROA of
-      RPKI [RFC6811].  The value is structured as: 2-byte AFI, 1-byte
-      SAFI, followed by a 64-bit Gauge.
 
 3.  IANA Considerations
 
@@ -381,18 +330,19 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Type = 24: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI selected as primary route.
 
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 6]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
    *  Type = 25: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI selected as a backup route.
 
    *  Type = 26: (64-bit Gauge) Number of routes in per-AFI/SAFI
       suppressed by configured route damping policy.
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 7]
-
-Internet-Draft             BMP New Statistics              February 2025
-
 
    *  Type = 27: (64-bit Gauge) Number of routes in per-AFI/SAFI marked
       as stale by any configuration.
@@ -436,19 +386,20 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Type = 39: (64-bit Gauge) Number of routes currently refused by
       exceeding the length threshold of AS-PATH.
 
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 7]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
    *  Type = 40: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI refused by exceeding the length threshold of AS-PATH.
 
    *  Type = 41: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI Adj-RIBs-Out Post-Policy invalidated after verifying route
       origin AS number through the ROA of RPKI.
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 8]
-
-Internet-Draft             BMP New Statistics              February 2025
-
 
    *  Type = 42: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI Adj-RIBs-Out Post-Policy validated after verifying route
@@ -462,22 +413,6 @@ Internet-Draft             BMP New Statistics              February 2025
    parameters to the BMP parameters name space
    (https://www.iana.org/assignments/bmp-parameters/bmp-
    parameters.xhtml).
-
-   *  Type = TBD1: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
-      RIBs-In Post-Policy invalidated due to origin AS mismatch by
-      verifying route origin AS number through the ROA of RPKI.
-
-   *  Type = TBD2: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
-      RIBs-In Post-Policy invalidated due to prefix length mismatch by
-      verifying route origin AS number through the ROA of RPKI.
-
-   *  Type = TBD3: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
-      RIBs-Out Post-Policy invalidated due to origin AS mismatch by
-      verifying route origin AS number through the ROA of RPKI.
-
-   *  Type = TBD4: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-
-      RIBs-Out Post-Policy invalidated due to prefix length mismatch by
-      verifying route origin AS number through the ROA of RPKI.
 
 4.  Security Considerations
 
@@ -498,18 +433,22 @@ Internet-Draft             BMP New Statistics              February 2025
    RFCs.  Please note that the listing of any individual implementation
    here does not imply endorsement by the IETF.  Furthermore, no effort
    has been spent to verify the information presented here that was
-
-
-
-Srivastava, et al.       Expires 22 August 2025                 [Page 9]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    supplied by IETF contributors.  This is not intended as, and must not
    be construed to be, a catalog of available implementations or their
    features.  Readers are advised to note that other implementations may
    exist.
+
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 8]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
    According to [RFC7942], "this will allow reviewers and working groups
    to assign due consideration to documents that have the benefit of
@@ -524,9 +463,33 @@ Internet-Draft             BMP New Statistics              February 2025
 
    *  Implementation:
 
-   *  Description: Most of the RIB-IN statistics are implemented.
+   *  Description: Below RIB-IN statistics are implemented.
 
-   *  Maturity Level: Product
+      -  Type = 18.
+
+      -  Type = 19.
+
+      -  Type = 20.
+
+      -  Type = 21.
+
+      -  Type = 22.
+
+      -  Type = 23.
+
+      -  Type = 26.
+
+      -  Type = 27.
+
+      -  Type = 28.
+
+      -  Type = 35.
+
+      -  Type = 36.
+
+      -  Type = 37.
+
+   *  Maturity Level: Demo
 
    *  Coverage:
 
@@ -535,6 +498,13 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Licensing: N/A
 
    *  Implementation experience: Nothing specific.
+
+
+
+Srivastava, et al.       Expires 24 August 2025                 [Page 9]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
    *  Contact: msri@juniper.net
 
@@ -553,14 +523,6 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Maturity Level: Product
 
    *  Coverage: Almost all New types.
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                [Page 10]
-
-Internet-Draft             BMP New Statistics              February 2025
-
 
    *  Version: Draft-05
 
@@ -593,6 +555,13 @@ Internet-Draft             BMP New Statistics              February 2025
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+
+
+Srivastava, et al.       Expires 24 August 2025                [Page 10]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
    [RFC2439]  Villamizar, C., Chandra, R., and R. Govindan, "BGP Route
               Flap Damping", RFC 2439, DOI 10.17487/RFC2439, November
               1998, <https://www.rfc-editor.org/info/rfc2439>.
@@ -606,17 +575,6 @@ Internet-Draft             BMP New Statistics              February 2025
               Rekhter, "Graceful Restart Mechanism for BGP", RFC 4724,
               DOI 10.17487/RFC4724, January 2007,
               <https://www.rfc-editor.org/info/rfc4724>.
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                [Page 11]
-
-Internet-Draft             BMP New Statistics              February 2025
-
 
    [RFC6811]  Mohapatra, P., Scudder, J., Ward, D., Bush, R., and R.
               Austein, "BGP Prefix Origin Validation", RFC 6811,
@@ -652,27 +610,17 @@ Internet-Draft             BMP New Statistics              February 2025
    [I-D.ietf-rtgwg-bgp-pic]
               Bashandy, A., Filsfils, C., and P. Mohapatra, "BGP Prefix
               Independent Convergence", Work in Progress, Internet-
-              Draft, draft-ietf-rtgwg-bgp-pic-21, 7 July 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-rtgwg-
-              bgp-pic-21>.
-
-   [I-D.lapukhov-bgp-ecmp-considerations]
-              Lapukhov, P. and J. Tantsura, "Equal-Cost Multipath
-              Considerations for BGP", Work in Progress, Internet-Draft,
-              draft-lapukhov-bgp-ecmp-considerations-13, 6 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-lapukhov-bgp-
-              ecmp-considerations-13>.
 
 
 
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                [Page 12]
+Srivastava, et al.       Expires 24 August 2025                [Page 11]
 
 Internet-Draft             BMP New Statistics              February 2025
 
+
+              Draft, draft-ietf-rtgwg-bgp-pic-21, 7 July 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-rtgwg-
+              bgp-pic-21>.
 
    [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
               Code: The Implementation Status Section", BCP 205,
@@ -721,8 +669,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-Srivastava, et al.       Expires 22 August 2025                [Page 13]
+Srivastava, et al.       Expires 24 August 2025                [Page 12]

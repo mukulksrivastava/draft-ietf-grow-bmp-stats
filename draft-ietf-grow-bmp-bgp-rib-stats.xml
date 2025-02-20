@@ -30,8 +30,8 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-ietf-grow-bmp-bgp-rib-stats-06"
-ipr="trust200902" updates="7854" consensus="true">
+<rfc category="std" docName="draft-ietf-grow-bmp-bgp-rib-stats-07"
+ipr="trust200902" consensus="true">
   <!-- category values: std, bcp, info, exp, and historic
     ipr values: full3667, noModification3667, noDerivatives3667
     you can add the attributes updates="NNNN" and obsoletes="NNNN"
@@ -158,7 +158,7 @@ ipr="trust200902" updates="7854" consensus="true">
 <abstract>
 <t>
 	RFC 7854 defines different BGP Monitoring Protocol (BMP) statistics message types to observe events that occur on a monitored router.
-	This document updates RFC 7854 by adding new statistics type to monitor BMP Adj-RIB-In and Adj-RIB-Out Routing Information Bases (RIBs).
+	This document defines new statistics type to monitor BMP Adj-RIB-In and Adj-RIB-Out Routing Information Bases (RIBs).
 </t>
 
 </abstract>
@@ -241,7 +241,7 @@ ipr="trust200902" updates="7854" consensus="true">
     The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
     
     A primary route is a recursive or non-recursive path whose next-hop resolution ends with an adjacency <xref target="I-D.ietf-rtgwg-bgp-pic"/>. A
-    prefix can have more than one primary path if multipath is configured <xref target="I-D.lapukhov-bgp-ecmp-considerations"/>.
+    prefix can have more than one primary path if multipath is configured.
     A best path is also considered as a primary path.
 	</t>
 
@@ -330,18 +330,6 @@ ipr="trust200902" updates="7854" consensus="true">
     The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
 	</t>
 
-	<t>
-		Type = TBD1: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated due to origin AS mismatch by verifying route origin AS number 
-    through the ROA of RPKI <xref target="RFC6811"/>. 
-    The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
-	</t>
-
-	<t>
-		Type = TBD2: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated due to prefix length mismatch by verifying route origin AS number 
-    through the ROA of RPKI <xref target="RFC6811"/>. 
-    The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
-	</t>
-
 	</list>
 </t>
 </section>
@@ -385,17 +373,6 @@ ipr="trust200902" updates="7854" consensus="true">
     The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
 	</t>
 
-	<t>
-		Type = TBD3: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated due to origin AS mismatch by verifying route origin AS number 
-    through the ROA of RPKI <xref target="RFC6811"/>. 
-    The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
-	</t>
-
-	<t>
-		Type = TBD4: (64-bit Gauge) Current Number of routes in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated due to prefix length mismatch by verifying route origin AS number 
-    through the ROA of RPKI <xref target="RFC6811"/>. 
-    The value is structured as: 2-byte AFI, 1-byte SAFI, followed by a 64-bit Gauge.
-	</t>
 
 	</list>
 </t>
@@ -537,29 +514,6 @@ ipr="trust200902" updates="7854" consensus="true">
           This document also requests that IANA assign the following additional parameters to 
           the BMP parameters name space (https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml).
       </t>
-      <t>
-          <list style="symbols">
-                <t>
-                  Type = TBD1: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated due to origin AS mismatch by verifying route origin AS number 
-                  through the ROA of RPKI. 
-                </t>
-
-                <t>
-                  Type = TBD2: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-RIBs-In Post-Policy invalidated due to prefix length mismatch by verifying route origin AS number 
-                  through the ROA of RPKI.
-                </t>
-
-                <t>
-                  Type = TBD3: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated due to origin AS mismatch by verifying route origin AS number 
-                  through the ROA of RPKI. 
-                </t>
-
-                <t>
-                  Type = TBD4: (64-bit Gauge) Number of routes in per-AFI/SAFI Adj-RIBs-Out Post-Policy invalidated due to prefix length mismatch by verifying route origin AS number 
-                  through the ROA of RPKI. 
-                </t>
-          </list>
-      </t>
 </section>
 
 <section anchor="Security" title="Security Considerations">
@@ -602,10 +556,48 @@ ipr="trust200902" updates="7854" consensus="true">
             Implementation: 
             </t>
             <t>
-            Description: Most of the RIB-IN statistics are implemented.
+            Description: Below RIB-IN statistics are implemented.
+            <list style="symbols">
+              <t>
+                Type = 18.
+              </t>
+              <t>
+                Type = 19.
+              </t>
+              <t>
+                Type = 20.
+              </t>
+              <t>
+                Type = 21.
+              </t>
+              <t>
+                Type = 22.
+              </t>
+              <t>
+                Type = 23.
+              </t>
+              <t>
+                Type = 26.
+              </t>
+              <t>
+                Type = 27.
+              </t>
+              <t>
+                Type = 28.
+              </t>
+              <t>
+                Type = 35.
+              </t>
+              <t>
+                Type = 36.
+              </t>
+              <t>
+                Type = 37.
+              </t>
+              </list>
             </t>
             <t>
-            Maturity Level: Product
+            Maturity Level: Demo
             </t>
             <t>
             Coverage: 
@@ -699,7 +691,6 @@ ipr="trust200902" updates="7854" consensus="true">
 
       <references title="Informational References">
         <?rfc include="reference.RFC.7942.xml"?>
-        <?rfc include='reference.I-D.lapukhov-bgp-ecmp-considerations.xml'?>
         <?rfc include='reference.I-D.ietf-rtgwg-bgp-pic.xml'?>
       </references>
     </references>
