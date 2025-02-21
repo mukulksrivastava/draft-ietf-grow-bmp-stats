@@ -5,12 +5,12 @@
 GROW                                                       M. Srivastava
 Internet-Draft                                          Juniper Networks
 Intended status: Standards Track                                  Y. Liu
-Expires: 24 August 2025                                     China Mobile
+Expires: 25 August 2025                                     China Mobile
                                                                   C. Lin
                                                     New H3C Technologies
                                                                    J. Li
                                                             China Mobile
-                                                        20 February 2025
+                                                        21 February 2025
 
 
    Definition For New BGP Monitoring Protocol (BMP) Statistics Types
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 August 2025.
+   This Internet-Draft will expire on 25 August 2025.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 1]
+Srivastava, et al.       Expires 25 August 2025                 [Page 1]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -74,11 +74,11 @@ Table of Contents
    5.  Implementation Status . . . . . . . . . . . . . . . . . . . .   8
      5.1.  Juniper Networks  . . . . . . . . . . . . . . . . . . . .   9
      5.2.  New H3C Technologies  . . . . . . . . . . . . . . . . . .  10
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  10
-     7.2.  Informational References  . . . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
+     7.2.  Informational References  . . . . . . . . . . . . . . . .  12
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 2]
+Srivastava, et al.       Expires 25 August 2025                 [Page 2]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -165,7 +165,7 @@ Internet-Draft             BMP New Statistics              February 2025
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 3]
+Srivastava, et al.       Expires 25 August 2025                 [Page 3]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -221,7 +221,7 @@ Internet-Draft             BMP New Statistics              February 2025
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 4]
+Srivastava, et al.       Expires 25 August 2025                 [Page 4]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -277,7 +277,7 @@ Internet-Draft             BMP New Statistics              February 2025
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 5]
+Srivastava, et al.       Expires 25 August 2025                 [Page 5]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -333,7 +333,7 @@ Internet-Draft             BMP New Statistics              February 2025
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 6]
+Srivastava, et al.       Expires 25 August 2025                 [Page 6]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -389,7 +389,7 @@ Internet-Draft             BMP New Statistics              February 2025
 
 
 
-Srivastava, et al.       Expires 24 August 2025                 [Page 7]
+Srivastava, et al.       Expires 25 August 2025                 [Page 7]
 
 Internet-Draft             BMP New Statistics              February 2025
 
@@ -408,11 +408,6 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Type = 43: (64-bit Gauge) Number of routes currently in per-AFI/
       SAFI Adj-RIBs-Out Post-Policy not found after verifying route
       origin AS number through the ROA of RPKI.
-
-   This document also requests that IANA assign the following additional
-   parameters to the BMP parameters name space
-   (https://www.iana.org/assignments/bmp-parameters/bmp-
-   parameters.xhtml).
 
 4.  Security Considerations
 
@@ -438,24 +433,22 @@ Internet-Draft             BMP New Statistics              February 2025
    features.  Readers are advised to note that other implementations may
    exist.
 
-
-
-
-
-
-
-
-Srivastava, et al.       Expires 24 August 2025                 [Page 8]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    According to [RFC7942], "this will allow reviewers and working groups
    to assign due consideration to documents that have the benefit of
    running code, which may serve as evidence of valuable experimentation
    and feedback that have made the implemented protocols more mature.
    It is up to the individual working groups to use this information as
    they see fit".
+
+
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                 [Page 8]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
 5.1.  Juniper Networks
 
@@ -499,16 +492,19 @@ Internet-Draft             BMP New Statistics              February 2025
 
    *  Implementation experience: Nothing specific.
 
-
-
-Srivastava, et al.       Expires 24 August 2025                 [Page 9]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    *  Contact: msri@juniper.net
 
    *  Last updated: January 20, 2025
+
+
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                 [Page 9]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
 5.2.  New H3C Technologies
 
@@ -517,12 +513,60 @@ Internet-Draft             BMP New Statistics              February 2025
    *  Implementation: H3C CR16000, CR19000 series routers implementation
       of New BMP Statistics Type.
 
-   *  Description: Almost all New types have been implemented in above-
+   *  Description: Below New types have been implemented in above-
       mentioned New H3C Products (running Version 7.1.086 and above).
 
-   *  Maturity Level: Product
+      -  Type = 18.
 
-   *  Coverage: Almost all New types.
+      -  Type = 19.
+
+      -  Type = 20.
+
+      -  Type = 21.
+
+      -  Type = 22.
+
+      -  Type = 23.
+
+      -  Type = 24.
+
+      -  Type = 25.
+
+      -  Type = 29.
+
+      -  Type = 30.
+
+      -  Type = 31.
+
+      -  Type = 32.
+
+      -  Type = 33.
+
+      -  Type = 34.
+
+      -  Type = 35.
+
+      -  Type = 36.
+
+      -  Type = 37.
+
+      -  Type = 38.
+
+      -  Type = 39.
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                [Page 10]
+
+Internet-Draft             BMP New Statistics              February 2025
+
+
+      -  Type = 40.
+
+   *  Maturity Level: Demo
+
+   *  Coverage:
 
    *  Version: Draft-05
 
@@ -555,13 +599,6 @@ Internet-Draft             BMP New Statistics              February 2025
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-
-
-Srivastava, et al.       Expires 24 August 2025                [Page 10]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
    [RFC2439]  Villamizar, C., Chandra, R., and R. Govindan, "BGP Route
               Flap Damping", RFC 2439, DOI 10.17487/RFC2439, November
               1998, <https://www.rfc-editor.org/info/rfc2439>.
@@ -570,6 +607,16 @@ Internet-Draft             BMP New Statistics              February 2025
               Border Gateway Protocol 4 (BGP-4)", RFC 4271,
               DOI 10.17487/RFC4271, January 2006,
               <https://www.rfc-editor.org/info/rfc4271>.
+
+
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                [Page 11]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
    [RFC4724]  Sangli, S., Chen, E., Fernando, R., Scudder, J., and Y.
               Rekhter, "Graceful Restart Mechanism for BGP", RFC 4724,
@@ -610,14 +657,6 @@ Internet-Draft             BMP New Statistics              February 2025
    [I-D.ietf-rtgwg-bgp-pic]
               Bashandy, A., Filsfils, C., and P. Mohapatra, "BGP Prefix
               Independent Convergence", Work in Progress, Internet-
-
-
-
-Srivastava, et al.       Expires 24 August 2025                [Page 11]
-
-Internet-Draft             BMP New Statistics              February 2025
-
-
               Draft, draft-ietf-rtgwg-bgp-pic-21, 7 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-rtgwg-
               bgp-pic-21>.
@@ -626,6 +665,14 @@ Internet-Draft             BMP New Statistics              February 2025
               Code: The Implementation Status Section", BCP 205,
               RFC 7942, DOI 10.17487/RFC7942, July 2016,
               <https://www.rfc-editor.org/info/rfc7942>.
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                [Page 12]
+
+Internet-Draft             BMP New Statistics              February 2025
+
 
 Authors' Addresses
 
@@ -669,4 +716,13 @@ Authors' Addresses
 
 
 
-Srivastava, et al.       Expires 24 August 2025                [Page 12]
+
+
+
+
+
+
+
+
+
+Srivastava, et al.       Expires 25 August 2025                [Page 13]

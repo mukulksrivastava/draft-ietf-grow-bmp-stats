@@ -510,10 +510,6 @@ ipr="trust200902" consensus="true">
                 </t>
           </list>
       </t>
-      <t>
-          This document also requests that IANA assign the following additional parameters to 
-          the BMP parameters name space (https://www.iana.org/assignments/bmp-parameters/bmp-parameters.xhtml).
-      </t>
 </section>
 
 <section anchor="Security" title="Security Considerations">
@@ -631,13 +627,35 @@ ipr="trust200902" consensus="true">
             Implementation: H3C CR16000, CR19000 series routers implementation of New BMP Statistics Type.
             </t>
             <t>
-            Description: Almost all New types have been implemented in above-mentioned New H3C Products (running Version 7.1.086 and above).
+            Description: Below New types have been implemented in above-mentioned New H3C Products (running Version 7.1.086 and above).
+              <list style="symbols">
+                <t>Type = 18.</t>
+                <t>Type = 19.</t>
+                <t>Type = 20.</t>
+                <t>Type = 21.</t>
+                <t>Type = 22.</t>
+                <t>Type = 23.</t>
+                <t>Type = 24.</t>
+                <t>Type = 25.</t>
+                <t>Type = 29.</t>
+                <t>Type = 30.</t>
+                <t>Type = 31.</t>
+                <t>Type = 32.</t>
+                <t>Type = 33.</t>
+                <t>Type = 34.</t>
+                <t>Type = 35.</t>
+                <t>Type = 36.</t>
+                <t>Type = 37.</t>
+                <t>Type = 38.</t>
+                <t>Type = 39.</t>
+                <t>Type = 40.</t>
+              </list>
             </t>
             <t>
-            Maturity Level: Product
+            Maturity Level: Demo
             </t>
             <t>
-            Coverage: Almost all New types.
+            Coverage:
             </t>
             <t>
             Version: Draft-05
